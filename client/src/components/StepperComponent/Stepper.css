@@ -1,0 +1,207 @@
+.Steppercontainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.tabs {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 0 0 1px 0 rgba(24, 94, 224, 0.15),
+    0 6px 12px 0 rgba(24, 94, 224, 0.15);
+  padding: 0.75rem;
+  margin-bottom: 20px;
+}
+
+.tabs * {
+  z-index: 2;
+}
+
+.Steppercontainer input[type="checkbox"] {
+  display: none;
+}
+
+.tab {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+  width: 34%;
+  font-size: 1.5rem;
+  font-family: Arial, Helvetica, sans-serif;
+  /* font-weight: bold; */
+  white-space: pre-line;
+  /* /n btrajje3a 3al sater */
+  color: #333300;
+  border-radius: 99px;
+  cursor: pointer;
+  transition: color 0.15s ease-in;
+  position: relative;
+}
+
+.tab.disabled {
+  color: lightslategrey;
+}
+
+.Steppercontainer input[type="checkbox"]:checked + .tabContent label {
+  color: #42d693;
+}
+
+.Steppercontainer input[type="checkbox"]:checked + .tabContent .StepperIcon img {
+  animation: bounce 2s infinite;
+}
+
+
+
+.Header {
+  font-style: italic;
+  margin-bottom: 2%;
+}
+
+.glider {
+  position: absolute;
+  display: flex;
+  height: 20%;
+  width: 10%;
+  background: linear-gradient(45deg, #80e3b7, #75ddef);
+  z-index: 1;
+  border-radius: 99px;
+  transition: 0.25s ease-out;
+}
+
+.tabContent {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-self: space-evenly;
+  width: 100%;
+}
+.step-content {
+  background-color: #fff;
+  box-shadow: 0 0 1px 0 rgba(24, 94, 224, 0.15),
+    0 6px 12px 0 rgba(24, 94, 224, 0.15);
+  padding: 20px;
+  border-radius: 8px;
+}
+.tabs {
+  transform: scale(0.6);
+}
+
+.Button.signIn {
+  display: block;
+  background-color: transparent;
+  border: none;
+  color: #333;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 14px;
+  font-style: italic;
+  margin-top: 10px;
+  transition: color 0.3s;
+
+  &:hover {
+    color: #80e3b7;
+  }
+}
+.Buttons {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  gap: 20%;
+}
+.submitButton {
+  padding: 2% 6%;
+  margin-top: 2%;
+  border: none;
+  background: linear-gradient(45deg, #80e3b7, #75ddef);
+  border-radius: 10px;
+  box-shadow: 0px 0px 1% rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+  color: #333300;
+  cursor: pointer;
+  align-self: flex-end;
+}
+.submitButton:hover {
+  animation: glow 1s infinite; /* Apply the glow animation */
+}
+
+.Button.Back {
+  padding: 2% 6%;
+  margin-top: 2%;
+  border: none;
+  background: linear-gradient(45deg, #80e3b7, #75ddef);
+  border-radius: 10px;
+  box-shadow: 0px 0px 1% rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+  color: #333300;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.Button.Back:hover {
+  animation: glow 1s infinite; /* Apply the glow animation */
+  /* background:white;
+  color: #80e3b7 */
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 40px #75ddef; /* Start with a shadow */
+  }
+  50% {
+    box-shadow: 0 0 45px #75ddef; /* Increase shadow size */
+  }
+  100% {
+    box-shadow: 0 0 30px #75ddef; /* Return to original shadow */
+  }
+}
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-28%);
+  }
+}
+.StepperIcon {
+  display: flex;
+  align-self: center;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 594px) {
+  .tab {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 595px) {
+  /* Add these styles to your CSS */
+  .Steppercontainer {
+    display: flex;
+    flex-direction: column; /* Arrange items vertically */
+    align-items: center; /* Center horizontally */
+    text-align: center;
+    width: 100%;
+    height: 100%; /* Adjust the width as needed */
+  }
+  .tab {
+    align-self: center;
+    display: block;
+  }
+
+  .tabs * {
+    z-index: 2;
+  }
+
+  .Button.signIn {
+    display: none;
+  }
+}
