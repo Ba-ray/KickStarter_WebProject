@@ -6,35 +6,12 @@ const cors = require('cors');
 const bodyParser= require('body-parser');
 require('dotenv').config();
 const authRoute = require('./routes/auth');
+const projectRoute = require('./routes/Projects')
 
 //app
 
 const app = express();
 app.use(express.json())
-
-
-// app.get('/api/users', (req, res) => {
-//     res.json({
-//         message: "Hello World"
-//     });
-// })
-
-
-
-// app.post('/api/users/login', (req, res) => {
-//     try {
-//         const { username, password } = req.body;
-//         res.json({
-//             message: "Your username is " + username + "    and your password is " + password
-//         });
-//     } catch (error) {
-//         res.status(400).json({ message: 'Invalid request body' });
-//     }
-// });
-
-
-
-
 
 
 //DB
@@ -50,6 +27,7 @@ mongoose.connect(process.env.MONGO_URI, {
 app.use(morgan('dev'));
 app.use(cors({ origin: true, credentials: true }));
 app.use("/api/auth", authRoute)
+app.use("/api/projects", projectRoute)
 
 //routes
 

@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 
 const projectSchema = new mongoose.Schema({
-  proj_id: { type: Number, required: true, unique: true },
-  proj_name: { type: String, required: true },
+  projectname: { type: String, required: true },
   description: String,
   tags: [String],
   images: [String],
@@ -19,3 +18,5 @@ const projectSchema = new mongoose.Schema({
 const Project = mongoose.model('Project', projectSchema);
 
 module.exports = Project;
+
+
