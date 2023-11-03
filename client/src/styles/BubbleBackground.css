@@ -1,0 +1,28 @@
+.bubble-background {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.bubble {
+  position: absolute;
+  background: linear-gradient(90deg, #80e3b7, #80e3b7); /* Gradient color */
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: bubble-float 4s infinite;
+  opacity: 0.3; /* Semi-transparent */
+}
+
+@keyframes bubble-float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

@@ -1,12 +1,13 @@
 import React, { useState,useEffect } from "react";
-import "./formInput.css";
+import "../styles/formInput.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import PhoneInput from 'react-phone-number-input';
+import "react-phone-number-input/style.css";
 
 const FormInput = (props) => {
   const [focused, setFocused] = useState(false);
   const [showPassword, setShowPassword] = useState(true);
   const [isValid, setIsValid] = useState(false);
-
 
   const { label, errorMessage, onChange, id, ...inputProps } = props;
 
@@ -26,7 +27,7 @@ const FormInput = (props) => {
 
   const validateInput = (value, name) => {
     switch (name) {
-      case ("username", "firstName", 'lastName'):
+      case ("username", "firstName", "lastName"):
         return /^[A-Za-z0-9]{3,16}$/.test(value); // 3- 16 letter and shouldn't include any special char.
 
       case "email":
@@ -45,32 +46,49 @@ const FormInput = (props) => {
         return value === props.values.password;
 
       case "age":
-        return Number(value)>=18;
+        return Number(value) >= 18;
 
       default:
         return true; // Default to true for other fields
     }
   };
+
+  const inputType =
+    inputProps.type === "tel" ? "tel" : showPassword ? inputProps.type : "text"; // Set the input type based on 'type' prop
+
   return (
     <div
       className={`formInput ${focused ? "focused" : ""} ${
         isValid ? "valid" : ""
-      } 
-      `}
+      }`}
     >
       <label>{label}</label>
       <div className="password-input-wrapper">
-        <input
-          {...inputProps}
-          type={showPassword ? inputProps.type : "text"}
-          onChange={onChange}
-          onBlur={handleFocus}
-          onFocus={() =>
-            inputProps.name === "confirmPassword" && setFocused(true)
-          }
-          focused={focused.toString()}
-          className={`${props.isBig ? "inputDescription" : "otherInputs"}`}
-        />
+        {inputProps.type === "tel" ? ( // Conditionally render PhoneInput for type 'tel'
+          <PhoneInput
+            international
+            defaultCountry="Lebanon"
+            placeholder="Enter phone number"
+            value={inputProps.value}
+            onChange={(value) =>
+              onChange({ target: { name: inputProps.name, value } })
+            }
+            className={`${props.isBig ? "inputDescription" : "otherInputs"}`}
+          />
+        ) : (
+          <input
+            {...inputProps}
+            type={showPassword ? inputProps.type : "text"}
+            onChange={onChange}
+            onBlur={handleFocus}
+            onFocus={() =>
+              inputProps.name === "confirmPassword" && setFocused(true)
+            }
+            focused={focused.toString()}
+            className={`${props.isBig ? "inputDescription" : "otherInputs"}`}
+          />
+        )}
+
         {(inputProps.name === "password" ||
           inputProps.name === "confirmPassword") && (
           <button
@@ -79,18 +97,16 @@ const FormInput = (props) => {
             onClick={togglePasswordVisibility}
           >
             {showPassword ? (
-              <FaEye className="eye" /> // Closed eye icon
+              <FaEye className="eye" />
             ) : (
-              <FaEyeSlash className="eye" /> // Open eye icon
+              <FaEyeSlash className="eye" />
             )}
           </button>
         )}
-        <span>{errorMessage}</span>
+        <span className="error-message-container">{errorMessage}</span>
       </div>
     </div>
   );
 };
-
-
 
 export default FormInput;
