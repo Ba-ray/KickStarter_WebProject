@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Verification.css"; // Import your CSS styles
+import "../../styles/Verification.css"; // Import your CSS styles
 
 const Verification = () => {
   const [otp, setOtp] = useState(["", "", "", ""]); // Initialize an array to store OTP values

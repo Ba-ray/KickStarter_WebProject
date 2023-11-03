@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./Register.css";
+import "../styles/Register.css";
 
 
 import Slider from "../components/Slider";

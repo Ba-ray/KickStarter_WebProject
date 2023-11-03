@@ -1,6 +1,6 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import "./Slider.css";
+import "../styles/Slider.css";
 import { useNavigate } from "react-router-dom";
 import { useState,useEffect } from "react";
 
@@ -20,7 +20,7 @@ const Slider = () => {
 
   const slideToSignIn = () => {
     if (currentPage !== "signin") {
-      navigate("/");
+      navigate("/signIn");
       setCurrentPage("signin");
     }
   };

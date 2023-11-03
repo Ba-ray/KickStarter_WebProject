@@ -54,7 +54,7 @@ const PersonnalInformation = () => {
     {
       id: 5,
       name: "phoneNumber",
-      type: "Tel",
+      type: "tel",
       placeholder: "Phone Number",
       label: "Phone Number:",
       required: true,

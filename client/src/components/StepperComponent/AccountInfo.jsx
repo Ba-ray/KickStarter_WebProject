@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import FormInput from "../FormInput";
 
-
 const AccountInformation = () => {
   
   const [values, setValues] = useState({

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Stepper.css"; // Add your CSS styles here
+import "../../styles/Stepper.css"; 
 import AccountInformation from "./AccountInfo";
 import { useNavigate } from "react-router-dom";
 import PersonnalInformation from "./PersonnalInformation";
@@ -13,7 +13,7 @@ import faceOnImage from "../../images/faceOn.png";
 
 const Stepper = () => {
   const navigate = useNavigate();
-
+  
    const steps = [
      {
        label: "Step 1",

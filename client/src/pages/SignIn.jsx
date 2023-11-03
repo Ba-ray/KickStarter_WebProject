@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./SignIn.css";
+import "../styles/SignIn.css";
 import FormInput from "../components/FormInput";
 import { useNavigate } from "react-router-dom";
 import Slider from "../components/Slider";
@@ -22,6 +22,7 @@ const SignIn = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+     navigate("/");
   };
 
 
@@ -69,12 +70,14 @@ const SignIn = () => {
             <button className="BackButton" onClick={handleClick}>
               Not A Member Yet?
             </button>
-            <button className="loginButton">Submit</button>
+            <button className="loginButton" onClick={handleSubmit}>
+              Submit
+            </button>
           </div>
         </form>
       </section>
       {/* <div className="SliderFormContainer"> */}
-      <Slider/>
+      <Slider />
       {/* </div> */}
     </main>
   );
