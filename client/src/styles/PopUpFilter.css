@@ -1,57 +1,38 @@
 /* Common styles for both .homepage and .searchpage */
-.dropdown-container .homepage, .dropdown-container .searchpage {
-  position: fixed;
-  top: 50%;
-  left: 50%;
+.dropdown{
+ background-color: chartreuse;
   transform: translate(-50%, -50%);
   z-index: 999;
   box-shadow: 0 0 1px 0 rgba(24, 94, 224, 0.15),
               0 6px 12px 0 rgba(24, 94, 224, 0.15);
-  max-width: 100%;
-  max-height: 80%;
+  padding: 10% 10%;
   margin-top: 4%;
-}
-
-/* Specific styles for .homepage */
-.dropdown-container .homepage {
-  background-color: white;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  width: 100%;
-  height: 50%;
-  /* overflow-y: scroll; */
 }
 
-/* Specific styles for .searchpage */
-.dropdown-container .searchpage {
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 8%;
-  /* overflow-y: scroll; */
-}
 
-.popup-filter-close {
+
+
+
+/* .popup-filter-close {
   color: #333300;
   background: transparent;
   border: 0;
   font-size: 20px;
   font-weight: bold;
   position: absolute;
-  align-self: self-start;
+  align-self: center;
   justify-self: end;
 
   &:hover {
     color: red;
   }
-}
+} */
 
 .search-dropdown-label {
-  margin-top: 4%;
+  margin-top: 20%;
 }
 
 .search-dropdown-button {
@@ -75,28 +56,22 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  flex-direction: column;
   gap: 4%;
   padding: 2%;
+  margin-top: 2% 2%
 }
 
-.filters-container.searchpage {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
 
-.filters-container.homepage{
-  width: 80%;
-  height: 40%;
-  display: flex;
-   align-items: center;
-  justify-content: space-around;
-  flex-direction: row;
 
-}
+
+
 
 .label-select-conatiner{
+  display:flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+
 }
 

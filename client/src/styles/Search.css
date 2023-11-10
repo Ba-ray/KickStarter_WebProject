@@ -19,5 +19,19 @@
   width: 100%;
 }
 
+.user-results{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row ;
+  justify-content: space-evenly;
+  float: left;
+  width: 65%;
+  height: 80%;
+  /* background-color: aqua; */
+  margin-left:30%
+}
+.search-results-header{
+  margin-left:30%
+}
 
 
