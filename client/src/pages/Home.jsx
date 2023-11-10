@@ -5,11 +5,13 @@ import "../styles/Home.css";
 import { useNavigate } from "react-router-dom";
 import HowItWorks from "../components/HomeComponents/HowItWorks";
 import Contact from "../components/HomeComponents/Contact";
-import SearchBar from "../components/SearchBar.tsx";
+
 import ProjectCard from "../components/HomeComponents/ProjectCard";
 
 import arrowDown from "../images/arrow-down.png";
 import UserReviewCarousel from "../components/HomeComponents/UserReviewCarousel";
+import SearchFilterButton from "../components/SearchFilterButton.jsx";
+
 
 
 const StatisticsCard = ({ value, label }) => (
@@ -146,7 +148,7 @@ const Home = () => {
             create a brighter future, together.
           </p>
         </div>
-        <SearchBar isInPage='homepage' />
+        <SearchFilterButton isInPage={"HomePage"} initiallyVisible={false} />
         <button
           onClick={scrollToProjects}
           className="home-scroll-button"

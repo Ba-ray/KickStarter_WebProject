@@ -13,8 +13,11 @@ const Slider = () => {
    useEffect(() => {
      if (window.location.pathname === "/register") {
        setCurrentPage("register");
-     } else {
+     } else if (window.location.pathname === "/signin") {
        setCurrentPage("signin");
+     }
+     else{
+      setCurrentPage("createProject");
      }
    }, []);
 
@@ -35,8 +38,7 @@ const Slider = () => {
 
   return (
     <AnimatePresence mode="wait">
-      {(currentPage === "signin") &&
-      
+      {currentPage === "signin" && (
         <motion.div
           key="signin"
           className="slide signin-slide"
@@ -53,26 +55,45 @@ const Slider = () => {
             </button>
           </div>
         </motion.div>
-      }
-       else {(currentPage === "register") &&
-      
-      <motion.div
-        key="register"
-        className="slide register-slide"
-        initial={{ opacity: 0, x: "-100%" }}
-        animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: "100%" }}
-        transition={{ type: "spring", stiffness: 100 }}
-      >
-        <div className="SliderContainer">
-          <h1>One Of Us?</h1>
-          <p className="text">If you already have an account, just sign in</p>
-          <button className="swapButton" onClick={slideToSignIn}>
-            Sign Up
-          </button>
-        </div>
-      </motion.div>
-      }
+      )}
+      else{" "}
+      {currentPage === "register" && (
+        <motion.div
+          key="register"
+          className="slide register-slide"
+          initial={{ opacity: 0, x: "-100%" }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: "100%" }}
+          transition={{ type: "spring", stiffness: 100 }}
+        >
+          <div className="SliderContainer">
+            <h1>One Of Us?</h1>
+            <p className="text">If you already have an account, just sign in</p>
+            <button className="swapButton" onClick={slideToSignIn}>
+              Sign Up
+            </button>
+          </div>
+        </motion.div>
+      )}
+      else{" "}
+      {currentPage === "createProject" && (
+        <motion.div
+          key="register"
+          className="slide register-slide"
+          initial={{ opacity: 0, x: "-100%" }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: "100%" }}
+          transition={{ type: "spring", stiffness: 100 }}
+        >
+          <div className="SliderContainer">
+            <h1>One Of Us?</h1>
+            <p className="text">If you already have an account, just sign in</p>
+            <button className="swapButton" onClick={slideToSignIn}>
+              Sign Up
+            </button>
+          </div>
+        </motion.div>
+      )}
     </AnimatePresence>
   );
 };
