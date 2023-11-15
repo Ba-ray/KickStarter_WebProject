@@ -13,8 +13,8 @@
 
 
 .btn-container.HomePage {
-  margin-top: 80%;
-  margin-left: 20%;
+  margin-top: 100%;
+  margin-left: 16%;
   width: 80%;
 }
 
@@ -30,7 +30,6 @@
   border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.3s cubic-bezier(0.075, 0.82, 0.165, 1), border 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
- 
 }
 
 .btn-container:hover {

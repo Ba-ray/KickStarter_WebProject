@@ -7,6 +7,7 @@ import Select from "react-select";
 import CreatableSelect from "react-select/creatable";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useNavigate } from "react-router-dom";
 
 const filterOptions = [
   { value: "all", label: "All" },
@@ -95,7 +96,7 @@ function PopUpFilter({ isOpen, onClose, isInPage }) {
       );
     }
     if (isInPage !== "SearchPage") {
-      onClose();
+      
     }
   };
 

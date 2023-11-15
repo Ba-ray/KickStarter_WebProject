@@ -7,11 +7,14 @@ const bodyParser= require('body-parser');
 require('dotenv').config();
 const authRoute = require('./routes/auth');
 const projectRoute = require('./routes/Projects')
+const uploadRoute = require('./routes/upload')
+const userRoute = require('./routes/Users')
 
 //app
 
 const app = express();
 app.use(express.json())
+app.use('/uploads', express.static('public/uploads'));
 
 
 //DB
@@ -28,6 +31,8 @@ app.use(morgan('dev'));
 app.use(cors({ origin: true, credentials: true }));
 app.use("/api/auth", authRoute)
 app.use("/api/projects", projectRoute)
+app.use("/api/Upload", uploadRoute)
+app.use("/api/user" , userRoute)
 
 //routes
 
