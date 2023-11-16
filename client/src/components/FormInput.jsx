@@ -8,6 +8,7 @@ const FormInput = (props) => {
   const [focused, setFocused] = useState(false);
   const [showPassword, setShowPassword] = useState(true);
   const [isValid, setIsValid] = useState(false);
+  const [formData, setFormData] = useState({ password: '' });
 
   const { label, errorMessage, onChange, id, ...inputProps } = props;
 
@@ -23,7 +24,14 @@ const FormInput = (props) => {
     // Implement your validation logic here
     const isValidInput = validateInput(inputProps.value, inputProps.name);
     setIsValid(isValidInput);
-  }, [inputProps.value, inputProps.name]);
+    if (inputProps.name === 'password') {
+      // Update the password in the parent component's state
+      setFormData((prevData) => ({
+        ...prevData,
+        password: inputProps.value,
+      }));
+    }
+  }, [inputProps.value, inputProps.name, setFormData]);
 
   const validateInput = (value, name) => {
     switch (name) {
@@ -43,7 +51,7 @@ const FormInput = (props) => {
       case "confirmPassword":
         // Implement validation logic for the confirmPassword field
         // Example: Check if it matches the password
-        return value === props.values.password;
+        return value === formData.password;
 
       case "age":
         return Number(value) >= 18;
