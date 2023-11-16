@@ -2,15 +2,38 @@ const express = require('express')
 const router = express.Router()
 const Project = require('../models/Project')
 const jwt = require('jsonwebtoken')
+const uploadMiddleware = require('../middlewares/MulterMiddleware');
 
 
 
-router.post("/createproject" , async(req,res)=>{
-    try{
-        const {projectname} = req.body
+
+router.post("/createproject", uploadMiddleware.single("projectImage"), async (req, res) => {
+    try {
+
+        const newProfileImage = req.file.filename;
+        console.log(newProfileImage);
+        // Check if req.file exists before accessing its properties
+        if (!req.file) {
+            return res.status(400).json({ message: "No file uploaded." });
+        }
+        // Extract other project details from req.body
+        const { projectname, description, tags, requested_fund, project_end_date, projectLocation } = req.body;
 
         if (!projectname || projectname.trim().length < 3) {
             return res.status(400).json({ message: "Project Name must be at least 3 characters." });
+        }
+
+        if (!description){
+            return res.status(400).json({ message: "Description Required." });
+        }
+
+        // Check description length
+        if (description && description.length > 500) {
+            return res.status(400).json({ message: "Project Description exceeds the maximum length of 500 characters." });
+        }
+
+        if (!requested_fund || requested_fund < 0){
+            return res.status(400).json({ message: "Requested Fund invalid." });
         }
 
         const existingProject = await Project.findOne({ projectname });
@@ -18,27 +41,51 @@ router.post("/createproject" , async(req,res)=>{
             return res.status(400).json({ message: "Project Name already exists." });
         }
 
-        const newProject = new Project({projectname})
-        const saveProject = await newProject.save()
-        res.status(200).json(saveProject)
-    }
-    catch(err){
+        console.log(req.file)
+
+        const newProject = new Project({
+            projectname,
+            description,
+            tags: tags.split(",").map(tag => tag.trim()),
+            requested_fund,
+            project_end_date,
+            projectLocation,
+            projectImage: req.file.filename
+        });
+
+        const saveProject = await newProject.save();
+        res.status(200).json(saveProject);
+    } catch (err) {
         console.log(err);
-        res.status(500).json(err)
+        res.status(500).json(err);
     }
-})
+});
+
+
 
 
 
 router.post("/projectPagination", async (req, res) => {
     try {
-        const { page = 1, limit = 10, search = '', timeFilter = 'thisYear' } = req.body;
+        const { page = 1, limit = 10, search = '', timeFilter = 'thisYear', tags = '' } = req.body;
 
         const query = {};
 
         if (search) {
             query.projectname = { $regex: new RegExp(search, 'i') };
         }
+
+
+        // Search for projects containing all specified tags
+        // if (tags) {
+        //     query.tags = { $all: tags.split(",") }; 
+        // }
+        
+        // Search for projects containing at least one specified tag
+        if (tags) {
+            query.tags = { $in: tags.split(",") }; 
+        }
+
 
         if (timeFilter === 'today') {
             const startOfToday = new Date();
@@ -74,11 +121,12 @@ router.post("/projectPagination", async (req, res) => {
         }
 
         console.log("Search Term:", search);
+        console.log("Tags:", tags);
         console.log("Time Filter:", timeFilter);
         console.log("Constructed Query:", query);
 
         const projects = await Project.find(query)
-            .sort({createdAt: -1}) 
+            .sort({ createdAt: -1 })
             .skip((page - 1) * limit)
             .limit(parseInt(limit));
 
@@ -88,7 +136,6 @@ router.post("/projectPagination", async (req, res) => {
         res.status(500).json({ message: "Server Error" });
     }
 });
-
 
 
 
