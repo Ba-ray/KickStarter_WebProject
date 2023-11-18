@@ -4,9 +4,9 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import SignIn from "./pages/SignIn";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
-import Search from "./pages/Search";
-import CreateProject from "./pages/CreateProject";
-
+import Services from "./pages/Services";
+import FormProject from "./pages/FormProject";
+import ProjectPage from "./pages/ProjectPage.jsx";
 
 function App() {
   return (
@@ -15,8 +15,9 @@ function App() {
         <Route path="/SignIn" element={<SignIn />} />
         <Route path="/" element={<Home />} />
         <Route path="/Register" element={<Register />} />
-        <Route path="/Search" element={<Search />} />
-        <Route path="/createProject" element={<CreateProject />} />
+        <Route path="/Services" element={<Services />} />
+        <Route path="/FormProject" element={<FormProject />} />
+        <Route path="/project/:projectId" element={<ProjectPage/>} />
       </Routes>
     </Router>
   );

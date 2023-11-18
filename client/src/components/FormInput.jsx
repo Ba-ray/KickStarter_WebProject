@@ -1,48 +1,35 @@
-import React, { useState,useEffect } from "react";
-import "../styles/formInput.css";
+import React, { useState, useEffect } from "react";
+import { Form, InputGroup, Button } from "react-bootstrap";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import PhoneInput from 'react-phone-number-input';
+import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import "../styles/formInput.css"
 
 const FormInput = (props) => {
   const [focused, setFocused] = useState(false);
-  const [showPassword, setShowPassword] = useState(true);
+  const [showPassword, setShowPassword] = useState("false");
   const [isValid, setIsValid] = useState(false);
 
-  const { label, errorMessage, onChange, id, ...inputProps } = props;
-
-  const handleFocus = (e) => {
-    setFocused(!focused);
-  };
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
-
-  useEffect(() => {
-    // Implement your validation logic here
-    const isValidInput = validateInput(inputProps.value, inputProps.name);
-    setIsValid(isValidInput);
-  }, [inputProps.value, inputProps.name]);
+  // console.log(showPassword)
+  const { label, errorMessage, onChange, ...inputProps } = props;
 
   const validateInput = (value, name) => {
     switch (name) {
-      case ("username", "firstName", "lastName"):
-        return /^[A-Za-z0-9]{3,16}$/.test(value); // 3- 16 letter and shouldn't include any special char.
+      case "username":
+      case "firstName":
+      case "lastName":
+        return /^[A-Za-z0-9]{3,16}$/.test(value);
 
       case "email":
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
       case "password":
-        // Implement validation logic for the password field
-        // Example: Check if the password meets your criteria
-        return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^\\da-zA-Z]).{8,20}$$/.test(
+        // Removed extra $ at the end of the regex
+        return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\\da-zA-Z]).{8,20}$/.test(
           value
         );
 
       case "confirmPassword":
-        // Implement validation logic for the confirmPassword field
-        // Example: Check if it matches the password
         return value === props.values.password;
 
       case "age":
@@ -53,42 +40,54 @@ const FormInput = (props) => {
     }
   };
 
-  const inputType =
-    inputProps.type === "tel" ? "tel" : showPassword ? inputProps.type : "text"; // Set the input type based on 'type' prop
+  useEffect(() => {
+    const isValidInput = validateInput(inputProps.value, inputProps.name);
+    setIsValid(isValidInput);
+  }, [inputProps.value, inputProps.name]);
 
-  return (
-    <div
-      className={`formInput ${focused ? "focused" : ""} ${
-        isValid ? "valid" : ""
-      }`}
-    >
-      <label>{label}</label>
+  const handleFocus = () => {
+    setFocused(!focused);
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
+
+  const handleMouseDown = (e) => {
+    // Prevent the input field from losing focus when clicking the eye icon
+    e.preventDefault();
+  };
+
+  const renderInput = () => {
+    const inputType = showPassword ? inputProps.type : "text";
+    console.log(inputProps.type);
+    if (inputProps.type === "tel") {
+      return (
+        <PhoneInput
+          international
+          defaultCountry="Lebanon"
+          placeholder="Enter phone number"
+          value={inputProps.value}
+          onChange={(value) =>
+            onChange({ target: { name: inputProps.name, value } })
+          }
+          className={`${props.isBig ? "inputDescription" : "otherInputs"}`}
+        />
+      );
+    }
+
+    return (
       <div className="password-input-wrapper">
-        {inputProps.type === "tel" ? ( // Conditionally render PhoneInput for type 'tel'
-          <PhoneInput
-            international
-            defaultCountry="Lebanon"
-            placeholder="Enter phone number"
-            value={inputProps.value}
-            onChange={(value) =>
-              onChange({ target: { name: inputProps.name, value } })
-            }
-            className={`${props.isBig ? "inputDescription" : "otherInputs"}`}
-          />
-        ) : (
-          <input
-            {...inputProps}
-            type={showPassword ? inputProps.type : "text"}
-            onChange={onChange}
-            onBlur={handleFocus}
-            onFocus={() =>
-              inputProps.name === "confirmPassword" && setFocused(true)
-            }
-            focused={focused.toString()}
-            className={`${props.isBig ? "inputDescription" : "otherInputs"}`}
-          />
-        )}
-
+        <Form.Control
+          type={inputType}
+          onChange={onChange}
+          onBlur={handleFocus}
+          onFocus={() =>
+            inputProps.name === "confirmPassword" && setFocused(true)
+          }
+          className={`${props.isBig ? "inputDescription" : "otherInputs"}`}
+          {...inputProps}
+        />
         {(inputProps.name === "password" ||
           inputProps.name === "confirmPassword") && (
           <button
@@ -97,14 +96,25 @@ const FormInput = (props) => {
             onClick={togglePasswordVisibility}
           >
             {showPassword ? (
-              <FaEye className="eye" />
+              <FaEye className="eye" onClick={togglePasswordVisibility} />
             ) : (
-              <FaEyeSlash className="eye" />
+              <FaEyeSlash className="eye" onClick={togglePasswordVisibility} />
             )}
           </button>
         )}
-        <span className="error-message-container">{errorMessage}</span>
       </div>
+    );
+  };
+
+  return (
+    <div
+      className={`formInput ${focused ? "focused" : ""} ${
+        isValid ? "valid" : ""
+      }`}
+    >
+      <Form.Label>{label}</Form.Label>
+      {renderInput()}
+      <span className="error-message-container">{errorMessage}</span>
     </div>
   );
 };

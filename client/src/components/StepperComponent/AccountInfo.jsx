@@ -54,6 +54,7 @@ const AccountInformation = () => {
         <FormInput
           key={input.id}
           {...input}
+          type={input.type}
           value={values[input.name]}
           values={values}
           onChange={onChange}

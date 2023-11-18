@@ -1,0 +1,91 @@
+.filters-container{
+  width:50vh;
+  left:0
+}
+
+.search-input {
+  width: 40%;
+  border: none;
+  outline: none;
+  height: 100%;
+  padding: 0 20px;
+  font-size: 16px;
+  background-color: transparent;
+  color: #fff;
+  transition: background-color 0.3s cubic-bezier(0.075, 0.82, 0.165, 1), color 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+
+
+.filter-button {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #80e3b7;
+  transition: background-color 0.3s cubic-bezier(0.075, 0.82, 0.165, 1), transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.filter-button:hover {
+  background-color: #74d0a7;
+  transform: scale(1.1);
+}
+
+
+.date-pickers {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+/* Styles for the filter popup */
+.dropdown {
+  overflow: visible;
+  position: absolute;
+  left: 0; /* Adjust the left position to 0 to place it on the left side */
+  top: 130%; /* Adjust the top position as needed */
+  background-color: #fff;
+  border: 1px solid #d1d1d1;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 4; /* Ensure the popup is on top of other elements */
+  padding: 20px;
+  transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+}
+
+/* Styles for the filter options and controls */
+.label-select-conatiner {
+  margin-bottom: 20px;
+}
+
+/* Update the styles for the filter popup */
+/* .search-page-popup.open { */
+
+
+/* Additional styles for the filter inputs, date pickers, and keywords */
+date-pickers,
+.input,
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d1d1d1;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.input,
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d1d1d1;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}

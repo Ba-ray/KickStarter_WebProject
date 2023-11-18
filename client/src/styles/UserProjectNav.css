@@ -1,0 +1,87 @@
+.user-project-nav-container{
+  /* width: 100vh; */
+  height:40%;
+  position: relative;
+  display: flex;
+  align-items: center;
+ flex-direction: column;
+margin: 2%;
+}
+
+
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+.user-project-nav-links {
+  color: #fff;
+  width: 40%;
+}
+.user-project-nav-links:hover {
+  color: #fff;
+  text-decoration: underline;
+  opacity: 1;
+}
+
+.search-bar-nav:focus {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.search-button-nav{
+  color:#333000;
+  border:none;
+}
+
+.search-button-nav:hover{
+  cursor:pointer;
+  color:#69cbef;
+  background: transparent;
+}
+
+.user-project-nav-container {
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+.user-project-nav {
+  margin: 5% 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 80vw; /* Change to a percentage or any appropriate unit for width */
+  height: 50px;
+  max-width: 600px;
+  background: linear-gradient(to right, #80e3b7, #75ddef);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 0;
+  border-radius: 50px;
+}
+
+.search-bar-nav {
+  width: 100%;
+  /* max-width: 300px; Set a maximum width for the search bar */
+  border-radius: 50px;
+}
+
+@media (max-width: 768px) {
+  /* .user-project-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .user-project-nav-links {
+    margin: 5px;
+    white-space: nowrap; /* Prevent links from wrapping to the next line */
+  
+
+  
+
+}

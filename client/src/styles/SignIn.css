@@ -1,5 +1,5 @@
 .containerSignIn {
-  background-image: url("../images/background.jpg");
+  background-image: url("../images/people2.jpg");
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
@@ -91,17 +91,7 @@ h1 {
 
 
 /* Define the animation for the glow effect */
-@keyframes glow {
-  0% {
-    box-shadow: 0 0 20px rgba(52, 152, 219, 0.7); /* Start with a shadow */
-  }
-  50% {
-    box-shadow: 0 0 30px rgba(52, 152, 219, 0.7); /* Increase shadow size */
-  }
-  100% {
-    box-shadow: 0 0 20px rgba(52, 152, 219, 0.7); /* Return to original shadow */
-  }
-}
+
 
 /* Apply the animation on button hover */
 .loginButton:hover{

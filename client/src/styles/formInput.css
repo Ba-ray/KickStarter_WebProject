@@ -1,5 +1,5 @@
 /* Updated styles with percentage-based measurements */
-.formInput{
+.formInput {
   display: flex;
   flex-direction: column;
   width: 80%;
@@ -10,49 +10,30 @@
   transition: padding-bottom 0.3s;
 }
 
-
-input{
-   width: 100%;
+input {
+  width: 100%;
   padding: 2% 0;
   border-radius: 4px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1rem;
   transition: border-color 0.3s, box-shadow 0;
   color: grey;
-  display:flex;
-
+  display: flex;
 }
 
-/* input.bigClass {
-  width: 100%;
-  padding: 2% 0;
-  /* border: 1px solid #ccc; */
-  /* border-radius: 4px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1rem;
-  transition: border-color 0.3s, box-shadow 0; */
-  /* border-top: none;
-  border-left: none;
-  border-right: none; */
-  /* border-bottom: 2px solid grey; */
-  /* text-align:  center;
-  color: grey;
-} */ 
-
-.otherInputs {
+.otherInputs,
+input.inputDescription {
   border: 1px solid #ccc;
   border-top: none;
   border-left: none;
-  border-right: none; 
+  border-right: none;
   border-bottom: 2px solid grey;
 }
 
 input.inputDescription {
-  border: 1px solid #ccc;
   border-top: 1px solid rgb(169, 165, 165);
   border-left: 1px solid rgb(169, 165, 165);
-  border-right: 1px solid rgb(169, 165, 165); 
-  border-bottom: 2px solid grey;
+  border-right: 1px solid rgb(169, 165, 165);
   padding: 8% 0;
 }
 
@@ -63,7 +44,7 @@ input:focus {
 
 label {
   color: #333300;
-  font-size: 1rem ;
+  font-size: 1rem;
   text-align: justify;
   margin-bottom: 2%;
 }
@@ -75,53 +56,49 @@ label {
   position: relative;
 }
 
-
-.error-message-container{
-  position:absolute;
-  margin-top:16%;
-  font-size: 12px; /* Adjust error message font size as needed */
+.error-message-container {
+  font-size: 12px;
   color: red;
-  display: none;
   white-space: pre-line;
-  width: 100%;
+  margin-top: 6%;
 }
+
 .password-input-wrapper .show-hide-password {
   position: absolute;
   background: none;
   border: none;
-  margin: 0;
   cursor: pointer;
-  font-size: 1rem; /* Adjust button font size as needed */
+  font-size: 1rem;
   color: #333;
-   height: 100%;
-    width: 24%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  height: 100%;
+  width: 24%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 input:invalid[focused="true"] {
   border-color: red;
   outline: none;
 }
 
-input:invalid[focused="true"]+ .error-message-container {
+input:invalid[focused="true"] + .error-message-container {
   display: inline;
 }
 
-.formInput.focused{
+.formInput.focused {
   padding-bottom: 6%;
 }
 
-.eye{
-    width: 50%;
-    height: 50%;
-    color: grey;
-  
-  }
+.eye {
+  width: 50%;
+  height: 50%;
+  color: grey;
+}
 
 .phone-input-input {
   width: 100%;
-  padding: 2% 40%; /* Adjust padding as needed */
+  padding: 2% 40%;
   border-radius: 4px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1rem;
@@ -129,6 +106,7 @@ input:invalid[focused="true"]+ .error-message-container {
   color: grey;
   display: flex;
 }
+
 .phone-input-container {
   display: flex;
   flex-direction: column;
@@ -137,25 +115,33 @@ input:invalid[focused="true"]+ .error-message-container {
   justify-content: flex-start;
   align-self: flex-start;
   margin-bottom: 4%;
-  margin-left: 50% ;
+  margin-left: 50%;
 }
 
-@media screen and (max-width: 425px){
-  .formInput.focused{
+.input-wrapper {
+  position: relative;
+}
+
+.password-toggle-button {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+@media screen and (max-width: 425px) {
+  .formInput.focused {
     padding-bottom: 16%;
   }
-
 }
 
-
 @media screen and (min-width: 595px) {
-  label{
+  label {
     font-size: 1rem;
     margin-bottom: 4%;
   }
-  input{
+  input {
     font-size: 1rem;
   }
-
 }
-

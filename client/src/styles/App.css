@@ -1,3 +1,16 @@
 *{
      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 20px rgba(52, 152, 219, 0.7); /* Start with a shadow */
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(52, 152, 219, 0.7); /* Increase shadow size */
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(52, 152, 219, 0.7); /* Return to original shadow */
+  }
+}
+

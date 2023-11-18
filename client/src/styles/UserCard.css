@@ -1,373 +1,150 @@
-/* Initially hide the sections and the arrow-down button */
-.card .card-section{
-  display: none;
+/* Common styles for both container and profile card */
+.common-styles {
+  font-family: Whitney, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 }
 
-.arrow-up-button {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.arrow-up-button:hover {
-  transform: rotate(180deg);
-}
-
-/* Show the sections and hide the arrow-down button when sections are visible */
-.card.sections-visible .card-section {
-  display: block;
-}
-
-.card.sections-visible .arrow-down-button {
-  display: none;
-}
-
-/* Add transition for a smooth reveal */
-.card.sections-visible .card-section {
-  animation: fadeIn 0.6s both;
-}
-
-/* Global Box Sizing */
-* {
-  box-sizing: border-box;
-}
-
-.card {
-  width: 70%; /* Increase the width to 70% */
-  height: 450px;
-  margin: auto;
-  overflow: hidden;
-  z-index: 1;
-  overflow-x: auto;
-  overflow-y: scroll;
-  display: flex;
-  flex-direction: column;
-  border-radius: 0px;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-  transition: 0.3s;
-}
-
-/* Customize based on data-state attribute */
-.card[data-state="#about"],
-.card[data-state="#contact"],
-.card[data-state="#experience"] {
-  height: 60%;
-}
-
-/* Header Styles */
-.card.is-active .card-header {
-  height: 80px;
-}
-
-.card.is-active .card-cover {
-  height: 100px;
-  top: -50px;
-}
-
-.card.is-active .card-avatar {
-  transform: none;
-}
-
-.card.is-active .card-main {
-  height: 80%;
-  width: 100%;
-}
-
-.card.is-active .card-fullname {
-  left: 40%;
-  font-size: 19px;
-}
-
-.card.is-active .card-jobtitle {
-  top: 20%;
-  left: 36%;
-  letter-spacing: 1px;
-  font-size: 10px;
-}
-
-/* Header Styles */
-.card-header {
-  position: relative;
-  display: flex;
-  height: 200px;
-  flex-shrink: 0;
-  width: 100%;
-  transition: 0.3s;
-}
-
-.card-header * {
-  transition: 0.3s;
-}
-
-.card-cover {
+.cardContainer {
   width: 100%;
   height: 100%;
-  position: absolute;
-  height: 160px;
-  top: -20%;
-  left: 0;
-  will-change: top;
-  background-size: cover;
-  background-position: center;
-  filter: blur(30px);
-  transform: scale(1.2);
-  transition: 0.5s;
-}
-
-.card-avatar {
-  width: 100px;
-  height: 100px;
-  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 50%;
-  object-fit: cover;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%) translateY(-64px);
-}
-
-.card-fullname {
-  position: absolute;
-  top: 68%;
-  text-align: center;
-  white-space: nowrap;
-  transform: translateY(-10px) translateX(-50%);
-  left: 48%;
-  font-size: 19px;
-}
-
-.card-jobtitle {
-  position: absolute;
-  bottom: 0;
-  text-align: center;
-  white-space: nowrap;
-  transform: translateY(-10px) translateX(-50%);
-  left: 50%;
-  bottom: 8%;
-  letter-spacing: 1px;
-  font-size: 10px;
-}
-
-/* Main Content Styles */
-.card-main {
-  position: relative;
-  flex: 1;
-  display: flex;
-  padding-top: 10px;
-  flex-direction: column;
-  width: 100%;
-  height: 0; /* Set an initial height for .card-main */
-  overflow: scroll;
-  transition: height 0.3s;
-}
-
-.card-subtitle {
-  font-weight: 700;
-  font-size: 13px;
-  margin-bottom: 8px;
-}
-
-.card-content {
-  padding: 20px;
-  overflow: scroll;
-}
-
-/* Bottom Content Styles */
-.card-bottom {
-  width: 100%;
-  height: 100%;
-}
-
-.card-desc {
-  line-height: 1.6;
-  color: #636b6f;
-  font-size: 14px;
-  margin: 0;
-  font-weight: 400;
-  font-family: "DM Sans", sans-serif;
-}
-
-/* Buttons Styles */
-.card-buttons {
-  display: flex;
   background-color: #fff;
-  margin-top: auto;
-  position: sticky;
-  bottom: 0;
-  left: 0;
-}
-
-.card-buttons button {
-  flex: 1;
-  background: 0;
-  font-size: 13px;
-  border: 0;
-  padding: 15px 5px;
+  margin-bottom: 5%;
+  margin-left: 5%;
+  display: flex;
+  transition-duration: .5s;
   cursor: pointer;
-  color: #5c5c6d;
-  transition: 0.3s;
-  font-family: "Jost", sans-serif;
-  font-weight: 500;
-  outline: 0;
-  border-bottom: 3px solid transparent;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
-.view-profile-button {
-  height: 20%;
-  padding: 10px 16px;
-  border: none;
-  background: linear-gradient(135deg, #80e3b7, #75ddef);
-  border-radius: 10px;
-  color: #fff;
-  cursor: pointer;
-  transition: background-color 0.3s cubic-bezier(0.075, 0.82, 0.165, 1), transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
-  align-self: center;
-  justify-self: center;
-  /* margin-top: 70%;
-  margin-left: 30%; */
+
+.cardContainer:hover .profileDiv {
+  transform: scale(0.96);
+  transition-duration: .1s;
 }
 
-.card-buttons button.is-active,
-.card-buttons button:hover {
-  color: #2b2c48;
-  border-bottom: 3px solid #09f;
-  background: linear-gradient(45deg, #80e3b7, #75ddef);
-}
-
-/* Section Styles */
-.card-section {
-  display: none;
-}
-
-.card-section.is-active {
-  display: block;
-  animation: fadeIn 0.6s both;
-}
-
-/* Keyframe Animation */
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-/* Timeline Styles */
-.card-timeline {
-  margin-top: 30px;
-  position: relative;
-}
-
-.card-timeline:after {
-  background: linear-gradient(45deg, #80e3b7, #75ddef);
-  content: "";
-  left: 42px;
-  width: 2px;
-  top: 0;
-  height: 100%;
+/* .infoDiv {
   position: absolute;
-  content: "";
-}
-
-.card-item {
-  position: relative;
-  padding-left: 60px;
-  padding-right: 20px;
-  padding-bottom: 30px;
-  z-index: 1;
-}
-
-.card-item:last-child {
-  padding-bottom: 5px;
-}
-
-.card-item:after {
-  content: attr(data-year);
-  width: 10px;
-  position: absolute;
-  top: 0;
-  left: 37px;
-  width: 8px;
-  height: 8px;
-  line-height: 0.6;
-  border: 2px solid #fff;
-  font-size: 11px;
-  text-indent: -35px;
-  border-radius: 50%;
-  color: rgba(134, 134, 134, 0.7);
-  background: linear-gradient(45deg, #80e3b7, #75ddef);
-}
-
-.card-item-title {
-  font-weight: 500;
-  font-size: 14px;
-  margin-bottom: 5px;
-}
-
-.card-item-desc {
-  font-size: 13px;
-  color: #6f6f7b;
-  line-height: 1.5;
-  font-family: "DM Sans", sans-serif;
-}
-
-.card-contact-wrapper {
-  margin-top: 20px;
-}
-
-.card-contact {
+  top: 30%;
+  width: 250px;
+  height: 240px;
   display: flex;
   align-items: center;
-  font-size: 13px;
-  color: #6f6f7b;
-  font-family: "DM Sans", sans-serif;
-  line-height: 1.6;
-  cursor: pointer;
-}
+  justify-content: center;
+  background-color:#f4f4f4;
+  z-index: 0;
+} */
 
-.card-contact + .card-contact {
-  margin-top: 16px;
-}
-
-.card-contact svg {
-  flex-shrink: 0;
-  width: 30px;
-  min-height: 34px;
-  margin-right: 12px;
-  transition: 0.3s;
-  padding-right: 12px;
-  border-right: 1px solid #dfe2ec;
-}
-
-.contact-me {
-  border: 0;
-  outline: none;
-  background: linear-gradient(45deg, #80e3b7, #75ddef);
-  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.15);
-  color: #fff;
-  padding: 12px 16px;
+/* .nameDiv {
   width: 100%;
-  border-radius: 5px;
-  margin-top: 25px;
-  cursor: pointer;
-  font-size: 14px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: #f4f4f4;
+  gap: 2px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+} */
+.name {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  font-size: 16px;
   font-weight: 500;
-  font-family: "Jost", sans-serif;
-  transition: 0.3s;
+  color: black;
 }
 
-/* Adjusted the style for a more consistent gradient */
-.contact-me:hover {
-  background: linear-gradient(45deg, #75ddef, #80e3b7);
+.socialDiv {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  color: rgb(14, 14, 14);
 }
 
-/* You can add additional styles as needed */
+.socials {
+  width: 100%;
+  color:#80e3b7;
+}
+
+.socials:hover {
+ transform: scale(1.5);
+}
+
+/* Profile card specific styles */
+.profile-card {
+    width: 350px;
+    height: 35vh;
+    border-radius: 20px;
+    background-color: #fff;
+    border: 2px solid #80e3b7;
+    transition: box-shadow 0.3s ease;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    align-content: space-around;
+}
+
+.profile-pic {
+  width: 100px;
+  height: 100px;
+  margin: 8px;
+  grid-column: 1;
+  display: flex;
+  align-self: center;
+  border-radius: 50%;
+  border: 3px solid #80e3b7;
+  filter: brightness(70%);
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.profile-pic:hover {
+  transform: scale(1.05);
+  filter: brightness(100%);
+}
 
 
+.name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #666;
+
+}
+
+.location img {
+  height: 1.5rem;
+}
+
+.button {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  gap: 10%;
+}
+
+.button {
+  position: absolute;
+  top: 32%;
+  right: 2%;
+  width: 120px;
+  padding: 0.8rem;
+  border: none;
+  background-color: #80e3b7;
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.button:hover {
+  transform: translateY(-5px);
+  background-color: #80e3b7; /* Darker shade on hover */
+}

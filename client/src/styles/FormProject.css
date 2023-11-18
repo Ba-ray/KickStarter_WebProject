@@ -1,0 +1,47 @@
+.formProject-header{
+  color:#80e3b7 ;
+}
+
+.my-5{
+  font-size: 16px;
+}
+
+
+/* Input Styles */
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+  width: 100%;
+  border: 1px solid #ced4da; /* Bootstrap's default input border color */
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.formProject-input{
+  margin: 4% 0;
+}
+
+/* Button Styles */
+.formProject-submit{
+  padding: 1% 2%;
+  border: none!important;
+  background: linear-gradient(45deg, #80e3b7, #75ddef);
+  border-radius: 10px;
+  box-shadow: 0px 0px 1% rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  align-self: center;
+  display: flex;
+  margin-top: 2%;
+  margin-right: 2%;
+  transition: box-shadow 0.3s ease; 
+}
+.formProject-submit:hover {
+  animation: glow 1s infinite;
+}
+
+.is-invalid {
+  border-color: #dc3545; /* Set the border color for invalid fields */
+}
