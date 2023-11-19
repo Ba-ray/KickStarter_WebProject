@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
   enterprise_name: String,
   profile_image: String,
   linkedin_link: String,
-  date_joined: Date,
+  date_joined: { type: Date , default: Date.now},
   date_deleted: Date,
   job_title: String,
   authorization: Boolean,

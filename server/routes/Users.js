@@ -32,5 +32,40 @@ router.post("/edituserimage/:userId", uploadMiddleware.single("photo"), async (r
 });
 
 
+router.post("/userPagination", async (req, res) => {
+    try {
+        const { page = 1, limit = 9, search = '' } = req.body;
+
+        const query = {};
+
+        if (search) {
+            query.username = { $regex: new RegExp(search, 'i') };
+        }
+
+        console.log("Search Term:", search);
+        console.log("Constructed Query:", query);
+
+        const users = await User.find(query)
+            .sort({ date_joined: -1 }) //date desc
+            .skip((page - 1) * limit)
+            .limit(parseInt(limit));
+
+        const totalCount = await User.countDocuments(query);
+        const totalPages = Math.ceil(totalCount / limit);
+
+
+        res.json({
+            totalPages,
+            users
+        });
+        
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Server Error" });
+    }
+});
+
+
+
 
 module.exports = router;
