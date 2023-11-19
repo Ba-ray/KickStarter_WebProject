@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import FormInput from "../FormInput";
 
-const PersonnalInformation = () => {
-  const [values, setValues] = useState({
-    firstName: "",
-    lastName: "",
-    age:"",
-    email: "",
-    phoneNumber: "",
-    aboutMe: "",
-  });
+const PersonnalInformation = ({formData, setFormData}) => {
+  // const [values, setValues] = useState({
+  //   firstName: "",
+  //   lastName: "",
+  //   age:"",
+  //   email: "",
+  //   phoneNumber: "",
+  //   aboutMe: "",
+  // });
 
   const inputs = [
     {
       id: 1,
-      name: "firstName",
+      name: "firstname",
       type: "text",
       placeholder: "First Name",
       errorMessage:
@@ -24,7 +24,7 @@ const PersonnalInformation = () => {
     },
     {
       id: 2,
-      name: "lastName",
+      name: "lastname",
       type: "text",
       placeholder: "Last Name",
       errorMessage:
@@ -34,7 +34,7 @@ const PersonnalInformation = () => {
     },
     {
       id: 3,
-      name: "age",
+      name: "age_range",
       type: "text",
       placeholder: "Age",
       label: "Age:",
@@ -53,7 +53,7 @@ const PersonnalInformation = () => {
 
     {
       id: 5,
-      name: "phoneNumber",
+      name: "phone",
       type: "tel",
       placeholder: "Phone Number",
       label: "Phone Number:",
@@ -73,7 +73,7 @@ const PersonnalInformation = () => {
   ];
 
   const onChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   return (
     <section className="inputs">
@@ -81,11 +81,10 @@ const PersonnalInformation = () => {
         <FormInput
           key={input.id}
           {...input}
-          value={values[input.name]}
-          values={values}
+          value={formData[input.name]}
+          // values={values}
           onChange={onChange}
           isBig={input.isBig}
-         
         />
       ))}
     </section>

@@ -11,7 +11,7 @@ import detailsOnImage from "../../images/detailsOn.png";
 import faceImage from "../../images/face.png";
 import faceOnImage from "../../images/faceOn.png";
 
-const Stepper = () => {
+const Stepper = ({formData,setFormData}) => {
   const navigate = useNavigate();
   
    const steps = [
@@ -86,20 +86,20 @@ const Stepper = () => {
       {activeStep === 0 && (
         <section className="inputs">
           <h1 className="Header">Account Information</h1>
-          <AccountInformation />
+          <AccountInformation formData={formData} setFormData={setFormData}/>
         </section>
       )}
       {activeStep === 1 && (
         <section className="inputs">
           <h1 className="Header">Personnal Information</h1>
-          <PersonnalInformation />
+          <PersonnalInformation formData={formData} setFormData={setFormData}/>
         </section>
       )}
 
       {activeStep === 2 && (
         <section className="inputs">
           <h1 className="Header">Verification</h1>
-          <Verification />
+          <Verification formData={formData} setFormData={setFormData}/>
         </section>
       )}
       <div className="Buttons">

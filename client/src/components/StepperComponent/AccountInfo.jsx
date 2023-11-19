@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import FormInput from "../FormInput";
 
-const AccountInformation = () => {
+const AccountInformation = ({formData, setFormData}) => {
   
-  const [values, setValues] = useState({
-    username: "",
-    password: "",
-    confirmPassword: "",
-  });
+  // const [values, setValues] = useState({
+  //   username: "",
+  //   password: "",
+  //   confirmPassword: "",
+  // });
 
   const inputs = [
     {
@@ -34,7 +34,7 @@ const AccountInformation = () => {
     },
     {
       id: 3,
-      name: "confirmPassword",
+      name: "confirmpassword",
       type: "password",
       placeholder: "Confirm Password",
       errorMessage: "Passwords don't match!",
@@ -43,11 +43,16 @@ const AccountInformation = () => {
     },
   ];
 
- 
-
-  const onChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
+  const handleInputChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
+
+  // const onChange = (e) => {
+  //   setValues({ ...values, [e.target.name]: e.target.value });
+  // };
   return (
     <section className="inputs">
       {inputs.map((input) => (
@@ -55,9 +60,9 @@ const AccountInformation = () => {
           key={input.id}
           {...input}
           type={input.type}
-          value={values[input.name]}
-          values={values}
-          onChange={onChange}
+          value={formData[input.name]}
+          // values={values}
+          onChange={handleInputChange}
         />
       ))}
     </section>

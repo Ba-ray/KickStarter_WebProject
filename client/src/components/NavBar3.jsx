@@ -30,7 +30,7 @@ const NavBar3 = () => {
   };
 
   const handleClick=()=>{
-    navigate("/register")
+    navigate("/signin")
   }
 
   return (
