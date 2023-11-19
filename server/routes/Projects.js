@@ -1,8 +1,10 @@
 const express = require('express')
 const router = express.Router()
 const Project = require('../models/Project')
+const User = require('../models/User')
 const jwt = require('jsonwebtoken')
 const uploadMiddleware = require('../middlewares/MulterMiddleware');
+const mongoose = require('mongoose'); //in order to change creator to ObjectId type
 
 
 
@@ -17,26 +19,32 @@ router.post("/createproject", uploadMiddleware.single("projectImage"), async (re
             return res.status(400).json({ message: "No file uploaded." });
         }
         // Extract other project details from req.body
-        const { projectname, description, tags, requested_fund, project_end_date, projectLocation } = req.body;
+        const { projectTitle, projectDescription, projectCategory, fundingGoal, projectDuration , creator} = req.body;
 
-        if (!projectname || projectname.trim().length < 3) {
+        const user = await User.findById(creator);
+
+        if(!user){
+            return res.status(400).json({ message: "User does not exist" });
+        }
+
+        if (!projectTitle || projectTitle.trim().length < 3) {
             return res.status(400).json({ message: "Project Name must be at least 3 characters." });
         }
 
-        if (!description){
+        if (!projectDescription){
             return res.status(400).json({ message: "Description Required." });
         }
 
         // Check description length
-        if (description && description.length > 500) {
+        if (projectDescription && projectDescription.length > 500) {
             return res.status(400).json({ message: "Project Description exceeds the maximum length of 500 characters." });
         }
 
-        if (!requested_fund || requested_fund < 0){
+        if (!fundingGoal || fundingGoal < 0){
             return res.status(400).json({ message: "Requested Fund invalid." });
         }
 
-        const existingProject = await Project.findOne({ projectname });
+        const existingProject = await Project.findOne({ projectTitle });
         if (existingProject) {
             return res.status(400).json({ message: "Project Name already exists." });
         }
@@ -44,13 +52,13 @@ router.post("/createproject", uploadMiddleware.single("projectImage"), async (re
         console.log(req.file)
 
         const newProject = new Project({
-            projectname,
-            description,
-            tags: tags.split(",").map(tag => tag.trim()),
-            requested_fund,
-            project_end_date,
-            projectLocation,
-            projectImage: req.file.filename
+            projectTitle,
+            projectDescription,
+            projectCategory: projectCategory.split(",").map(tag => tag.trim()),
+            fundingGoal,
+            projectDuration,
+            projectImage: req.file.filename,
+            creator
         });
 
         const saveProject = await newProject.save();
@@ -60,8 +68,6 @@ router.post("/createproject", uploadMiddleware.single("projectImage"), async (re
         res.status(500).json(err);
     }
 });
-
-
 
 
 

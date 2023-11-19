@@ -2,19 +2,24 @@ const mongoose = require('mongoose');
 
 
 const projectSchema = new mongoose.Schema({
-  projectname: { type: String, required: true },
-  description: String,
+  projectTitle: { type: String, required: true },
+  projectDescription: String,
   projectImage : String,
-  tags: [String],
+  projectCategory: [String],
   images: [String],
   projectLocation : String,
-  project_end_date: Date,
-  requested_fund: Number,
+  projectDuration: Number,
+  fundingGoal: Number,
   current_fund: Number,
   date_taken_offline: Date, //Not needed
   date_deleted: Date,   // Currently not needed
   stocks_for_sale: Number,  // Not necessary for now
-  invited_users: [String] 
+  invited_users: [String],
+  creator: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  }
 }, {timestamps: true});
 
 
