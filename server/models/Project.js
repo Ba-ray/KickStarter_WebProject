@@ -8,7 +8,7 @@ const projectSchema = new mongoose.Schema({
   projectCategory: [String],
   images: [String],
   projectLocation : String,
-  projectDuration: Number,
+  projectEndDate: Date,
   fundingGoal: Number,
   current_fund: Number,
   date_taken_offline: Date, //Not needed

@@ -48,6 +48,14 @@ router.post("/createproject", uploadMiddleware.single("projectImage"), async (re
         if (existingProject) {
             return res.status(400).json({ message: "Project Name already exists." });
         }
+        
+        if (!projectDuration || projectDuration < 0){
+            return res.status(400).json({ message: "Project Duration Invalid" });
+        }
+
+        const startDate = new Date();
+        const durationInDays = parseInt(projectDuration); 
+        const endDate = new Date(startDate.getTime() + durationInDays * 24 * 60 * 60 * 1000);
 
         console.log(req.file)
 
@@ -56,7 +64,7 @@ router.post("/createproject", uploadMiddleware.single("projectImage"), async (re
             projectDescription,
             projectCategory: projectCategory.split(",").map(tag => tag.trim()),
             fundingGoal,
-            projectDuration,
+            projectEndDate: endDate,
             projectImage: req.file.filename,
             creator
         });
@@ -73,23 +81,16 @@ router.post("/createproject", uploadMiddleware.single("projectImage"), async (re
 
 router.post("/projectPagination", async (req, res) => {
     try {
-        const { page = 1, limit = 10, search = '', timeFilter = 'thisYear', tags = '' } = req.body;
+        const { page = 1, limit = 9, search = '', timeFilter = 'thisYear', tags = '' } = req.body;
 
         const query = {};
 
         if (search) {
-            query.projectname = { $regex: new RegExp(search, 'i') };
+            query.projectTitle = { $regex: new RegExp(search, 'i') };
         }
 
-
-        // Search for projects containing all specified tags
-        // if (tags) {
-        //     query.tags = { $all: tags.split(",") }; 
-        // }
-        
-        // Search for projects containing at least one specified tag
         if (tags) {
-            query.tags = { $in: tags.split(",") }; 
+            query.projectCategory = { $regex: new RegExp(tags.split(",").join("|"), "i") };
         }
 
 
@@ -99,7 +100,7 @@ router.post("/projectPagination", async (req, res) => {
             const endOfToday = new Date();
             endOfToday.setHours(23, 59, 59, 999);
             query.createdAt = { $gte: startOfToday, $lte: endOfToday };
-        } else if (timeFilter === 'thisWeek') {
+        } else if (timeFilter === 'this-week') {
             const startOfWeek = new Date();
             startOfWeek.setHours(0, 0, 0, 0);
             startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay());
@@ -107,7 +108,7 @@ router.post("/projectPagination", async (req, res) => {
             endOfWeek.setHours(23, 59, 59, 999);
             endOfWeek.setDate(endOfWeek.getDate() + (6 - endOfWeek.getDay()));
             query.createdAt = { $gte: startOfWeek, $lte: endOfWeek };
-        } else if (timeFilter === 'thisMonth') {
+        } else if (timeFilter === 'this-month') {
             const startOfMonth = new Date();
             startOfMonth.setHours(0, 0, 0, 0);
             startOfMonth.setDate(1);
@@ -144,5 +145,5 @@ router.post("/projectPagination", async (req, res) => {
 });
 
 
-
 module.exports = router
+
