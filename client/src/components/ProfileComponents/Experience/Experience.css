@@ -1,0 +1,103 @@
+#experience {
+    background-color: #f7f8f9;
+    overflow: hidden;
+    margin: auto;
+    margin-left: 15%;
+  }
+  
+  .container {
+    margin-top: 2%;
+  }
+  
+  @media (max-width: 850px) {
+    .container {
+      margin-left: 10%;
+    }
+  
+    #experience {
+      padding-top: 80px; 
+    }
+  }
+  
+  .resume-item {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+  .resume.loaded {
+    margin-top: 30px;
+    transition: max-height 0.5s ease-out;
+  }
+  
+  .resume.loaded .resume-item {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+  
+  .resume-item {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  
+  .resume-title {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #80e3b7;
+    transition: color 0.3s ease;
+  }
+  
+  .resume-item {
+    padding: 20px 0;
+    border-left: 2px solid #80e3b7;
+    position: relative;
+    transition: border-left-color 0.3s ease;
+  }
+  
+  .resume-item h4 {
+    line-height: 18px;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-family: "Poppins", sans-serif;
+    color: #80e3b7;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+  }
+  
+  .resume-item h5 {
+    font-size: 16px;
+    background: #f7f8f9;
+    padding: 5px 15px;
+    display: inline-block;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  .resume-item ul {
+    padding-left: 20px;
+  }
+  
+  .resume-item ul li {
+    padding-bottom: 10px;
+    list-style-type: none;
+  }
+  
+  .resume-item:last-child {
+    padding-bottom: 0;
+  }
+  
+  .resume-item::before {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50px;
+    left: -9px;
+    top: 0;
+    background: #fff;
+    border: 2px solid #80e3b7;
+    transition: border-color 0.3s ease;
+  }
+  

@@ -4,9 +4,6 @@ import FormInput from "../FormInput";
 import { useState } from "react";
 import SocialLinks from "../SocialLinks";
 
-
-
-
 const Contact = () => {
   const [values, setValues] = useState({
     Name: "",

@@ -12,7 +12,6 @@ const authRoute = require('./routes/auth');
 const app = express();
 app.use(express.json())
 
-
 // app.get('/api/users', (req, res) => {
 //     res.json({
 //         message: "Hello World"

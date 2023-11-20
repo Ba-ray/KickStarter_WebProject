@@ -1,0 +1,116 @@
+   #contact {
+    margin-left: 15%;
+  }
+  
+  .container-contactUser {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+  }
+  
+  .container-contactUser .info {
+    margin: 10px auto;  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .container-contactUser .info p {
+    padding: 2px;
+    font-size: 14px;
+    color: #728394;
+  }
+  
+  .contactUser .php-email-form {
+    width: 100%;
+    background: #fff;
+  }
+  
+  .contactUser .php-email-form .form-group {
+    padding-bottom: 8px;
+  }
+  .contactUser .message{
+    margin: auto;
+    width: 70%;
+    margin-bottom: 20px;
+  }
+  .contactUser .php-email-form .error-message {
+    display: none;
+    color: #fff;
+    background: #80e3b7;
+    text-align: left;
+    padding: 15px;
+    font-weight: 600;
+  }
+  
+  .contactUser .php-email-form .error-message br+br {
+    margin-top: 25px;
+  }
+  
+  .contactUser .php-email-form .sent-message {
+    display: none;
+    color: #fff;
+    background: #80e3b7;
+    text-align: center;
+    padding: 15px;
+    font-weight: 600;
+  }
+  
+  .contactUser .php-email-form .loading {
+    display: none;
+    background: #fff;
+    text-align: center;
+    padding: 15px;
+  }
+  
+  .contactUser .php-email-form .loading:before {
+    content: "";
+    display: inline-block;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    margin: 0 10px -6px 0;
+    border: 3px solid #80e3b7;
+    border-top-color: #eee;
+    animation: animate-loading 1s linear infinite;
+  }
+  
+  .contactUser .php-email-form input,
+  .contactUser .php-email-form textarea {
+    border-radius: 4px;
+    box-shadow: none;
+    font-size: 14px;
+  }
+  
+  .contactUser .php-email-form input[type=text],
+  .contactUser .php-email-form input[type=email] {
+    height: 44px;
+  }
+  
+  .contactUser .php-email-form textarea {
+    padding: 10px 12px;
+  }
+  
+  .contactUser .php-email-form button[type=submit] {
+    background: #80e3b7;
+    border: 0;
+    padding: 10px 35px;
+    color: #fff;
+    transition: 0.4s;
+    border-radius: 50px;
+  }
+  
+  .contactUser .php-email-form button[type=submit]:hover {
+    background: #80e3b7;
+  }
+  
+  @media (max-width: 9o0px) {
+
+    .container-contactUser .info {
+      align-items: flex-start;
+    }
+  
+    .contactUser .php-email-form .message {
+      width: 100%;
+    }
+  }
