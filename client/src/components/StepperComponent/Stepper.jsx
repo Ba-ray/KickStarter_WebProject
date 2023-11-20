@@ -44,6 +44,13 @@ const Stepper = ({formData,setFormData}) => {
     navigate("/");
   };
 
+    const handleNextStep = () => {
+      setActiveStep((prevStep) => prevStep + 1);
+    };
+
+    const handleBack = () => {
+      setActiveStep((prevStep) => prevStep - 1);
+    };
   return (
     <div className="Steppercontainer">
       <div className="tabs">
@@ -86,20 +93,35 @@ const Stepper = ({formData,setFormData}) => {
       {activeStep === 0 && (
         <section className="inputs">
           <h1 className="Header">Account Information</h1>
-          <AccountInformation formData={formData} setFormData={setFormData}/>
+          <AccountInformation
+            formData={formData}
+            setFormData={setFormData}
+            onNext={handleNextStep}
+            onBack={handleBack}
+          />
         </section>
       )}
       {activeStep === 1 && (
         <section className="inputs">
           <h1 className="Header">Personnal Information</h1>
-          <PersonnalInformation formData={formData} setFormData={setFormData}/>
+          <PersonnalInformation
+            formData={formData}
+            setFormData={setFormData}
+            onNext={handleNextStep}
+            onBack={handleBack}
+          />
         </section>
       )}
 
       {activeStep === 2 && (
         <section className="inputs">
           <h1 className="Header">Verification</h1>
-          <Verification formData={formData} setFormData={setFormData}/>
+          <Verification
+            formData={formData}
+            setFormData={setFormData}
+            onNext={handleNextStep}
+            onBack={handleBack}
+          />
         </section>
       )}
       <div className="Buttons">
@@ -108,12 +130,12 @@ const Stepper = ({formData,setFormData}) => {
           onClick={
             activeStep === 0
               ? handleClick
-              : () => handleStepClick(activeStep - 1)
+              : handleBack
           }
         >
           {activeStep === 0 ? "Already have an account?" : "Back"}
         </button>
-        <button
+        {/* <button
           className="submitButton"
           type="submit"
           onClick={
@@ -123,7 +145,7 @@ const Stepper = ({formData,setFormData}) => {
           }
         >
           {activeStep === steps.length - 1 ? "Submit" : "Next"}
-        </button>
+        </button> */}
       </div>
     </div>
   );
