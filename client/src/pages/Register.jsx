@@ -10,7 +10,12 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
   };
-
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+    confirmPassword: "",
+  });
+  
   return (
     <main className="container">
       <Slider />
@@ -18,7 +23,7 @@ const Register = () => {
         <h1>Sign Up</h1>
         <SocialNetwork />
         <p className="text">or you can fill the form:</p>
-        <Stepper />
+        <Stepper formData={formData} setFormData={setFormData}/>
         
       </form>
     </main>
