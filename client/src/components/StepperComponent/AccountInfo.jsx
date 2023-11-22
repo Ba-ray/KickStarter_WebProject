@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import FormInput from "../FormInput";
 
-const AccountInformation = ({formData, setFormData}) => {
+const AccountInformation = ({formData, setFormData,onNext}) => {
   
   // const [values, setValues] = useState({
   //   username: "",
   //   password: "",
   //   confirmPassword: "",
   // });
+
+    const [validity, setValidity] = useState({
+      username: false,
+      password: false,
+      confirmPassword: false,
+    });
 
   const inputs = [
     {
@@ -50,9 +56,44 @@ const AccountInformation = ({formData, setFormData}) => {
     });
   };
 
-  // const onChange = (e) => {
-  //   setValues({ ...values, [e.target.name]: e.target.value });
-  // };
+  const validateInput = (name, value) => {
+    switch (name) {
+      case "username":
+        return /^[A-Za-z0-9]{3,16}$/.test(value);
+
+      case "password":
+        return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\\da-zA-Z]).{8,20}$/.test(
+          value
+        );
+
+      case "confirmPassword":
+        return value === value.password;
+
+      default:
+        return false;
+    }
+  };
+  
+  useEffect(() => {
+    setValidity((prevValidity) => ({
+      ...prevValidity,
+      username: validateInput("username", values.username),
+      password: validateInput("password", values.password),
+      confirmPassword: validateInput("confirmPassword", values.confirmPassword),
+    }));
+  }, [values]);
+
+  const isFormValid = () => {
+    // Check if all fields are valid
+    return Object.values(validity).every((valid) => valid);
+  };
+
+  const handleNextClick = () => {
+    if (isFormValid()) {
+      onNext();
+    }
+  };
+
   return (
     <section className="inputs">
       {inputs.map((input) => (
@@ -65,6 +106,14 @@ const AccountInformation = ({formData, setFormData}) => {
           onChange={handleInputChange}
         />
       ))}
+      <button
+        className="submitButton"
+        type="button"
+        onClick={handleNextClick}
+        disabled={!isFormValid()}
+      >
+        Next
+      </button>
     </section>
   );
 };
