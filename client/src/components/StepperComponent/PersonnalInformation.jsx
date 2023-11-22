@@ -2,15 +2,6 @@ import React, { useState } from "react";
 import FormInput from "../FormInput";
 
 const PersonnalInformation = ({formData, setFormData}) => {
-  // const [values, setValues] = useState({
-  //   firstName: "",
-  //   lastName: "",
-  //   age:"",
-  //   email: "",
-  //   phoneNumber: "",
-  //   aboutMe: "",
-  // });
-
   const inputs = [
     {
       id: 1,
