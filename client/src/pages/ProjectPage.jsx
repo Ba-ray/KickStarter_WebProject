@@ -12,21 +12,6 @@ const ProjectPage = (props) => {
   const [projectData,setProjectData] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  useEffect(() => {
-    // Fetch project data from the backend when the component mounts
-    const fetchProjectData = async () => {
-      try {
-        const response = await fetch(`http://localhost:8080/api/Projects/GetProjectByID/${props.data._id}`);
-        const data = await response.json();
-        setProjectData(data);
-      } catch (error) {
-        console.error("Error fetching project data:", error);
-      }
-    };
-
-    fetchProjectData();
-  }, [props.data.projectId]);
-
   const handleOpenProject = () => {
     setIsPopupOpen(true);
   };
@@ -34,6 +19,14 @@ const ProjectPage = (props) => {
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
+
+  useEffect(() => {
+    if (props.data) {
+      setProjectData(props.data);
+    }
+
+  }, [props.data]);
+
 
   return (
     <div className="projectCardContainer">
@@ -44,9 +37,12 @@ const ProjectPage = (props) => {
               <FontAwesomeIcon icon={faLock} className="lock-icon" />
             )}
             <Card.Img
-              src={projectImage}
+              src={projectData.projectImage ? `http://localhost:8080/uploads/${projectData.projectImage}` : projectImage}
               alt="projectimg"
               className="project-image"
+              onError={(e) => {
+                e.target.src = projectImage; // Set the default image if there's an error loading the specified one
+              }}
             />
           </Card.Header>
           <Card.Body className="project-body">
