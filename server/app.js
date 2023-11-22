@@ -14,7 +14,33 @@ const userRoute = require('./routes/Users')
 
 const app = express();
 app.use(express.json())
+<<<<<<< HEAD
 app.use('/uploads', express.static('public/uploads'));
+=======
+
+// app.get('/api/users', (req, res) => {
+//     res.json({
+//         message: "Hello World"
+//     });
+// })
+
+
+
+// app.post('/api/users/login', (req, res) => {
+//     try {
+//         const { username, password } = req.body;
+//         res.json({
+//             message: "Your username is " + username + "    and your password is " + password
+//         });
+//     } catch (error) {
+//         res.status(400).json({ message: 'Invalid request body' });
+//     }
+// });
+
+
+
+
+>>>>>>> frontend
 
 
 //DB

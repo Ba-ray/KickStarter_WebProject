@@ -3,13 +3,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import "../styles/Slider.css";
 import { useNavigate } from "react-router-dom";
 import { useState,useEffect } from "react";
-
+ 
 const Slider = () => {
-
+ 
  
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState("");
-
+ 
    useEffect(() => {
      if (window.location.pathname === "/register") {
        setCurrentPage("register");
@@ -20,22 +20,22 @@ const Slider = () => {
       setCurrentPage("createProject");
      }
    }, []);
-
+ 
   const slideToSignIn = () => {
     if (currentPage !== "signin") {
       navigate("/signIn");
       setCurrentPage("signin");
     }
   };
-
+ 
   const slideToRegister = () => {
     if (currentPage !== "register") {
       navigate("/register");
       setCurrentPage("register");
-      
+     
     }
   };
-
+ 
   return (
     <AnimatePresence mode="wait">
       {currentPage === "signin" && (
@@ -51,7 +51,7 @@ const Slider = () => {
             <h1>Not a Member Yet?</h1>
             <p className="text">We're very glad to welcome you</p>
             <button className="swapButton" onClick={slideToRegister}>
-              Sign Up
+              Sign In
             </button>
           </div>
         </motion.div>
@@ -70,12 +70,11 @@ const Slider = () => {
             <h1>One Of Us?</h1>
             <p className="text">If you already have an account, just sign in</p>
             <button className="swapButton" onClick={slideToSignIn}>
-              Sign Up
+              Sign In
             </button>
           </div>
         </motion.div>
       )}
-      else{" "}
       {currentPage === "createProject" && (
         <motion.div
           key="register"
@@ -97,5 +96,5 @@ const Slider = () => {
     </AnimatePresence>
   );
 };
-
+ 
 export default Slider;

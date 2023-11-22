@@ -1,10 +1,11 @@
-/* .container {
+.register-container {
+  display: flex;
     flex-direction: row;
     overflow: scroll;
     width: 100%;
-    /* height: 100%; */
-  
-
+   
+}
+ 
 /* .formReg {
   flex-wrap: wrap;
   overflow: scroll;
@@ -12,14 +13,14 @@
   height: 100%;
   width: auto;
 } */
-
+ 
 .inputs {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
-
-
+ 
+ 
  
  
   /* .SliderReg{
@@ -28,13 +29,13 @@
     height: 100%;
     transition: display 0.5s
   } */
-  
-/* 
+ 
+/*
  @media screen and (max-width: 699px) {
    
-
+ 
  } */
-
+ 
 @media screen and (min-width: 700px) {
    .container {
     width: 100%;
@@ -43,7 +44,7 @@
     grid-template-columns: 32% 68%;
     position: absolute;
   }
-  
+ 
   .SliderReg {
     width: 100%;
     grid-column: 1;
@@ -53,11 +54,12 @@
     width: 100%;
     overflow: scroll;
     grid-column: 2;
-  
+ 
   }
 .BackButton{
     display: none;
   }
 }
-
-
+ 
+ 
+ 

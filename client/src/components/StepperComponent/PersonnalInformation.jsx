@@ -1,21 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FormInput from "../FormInput";
 
-const PersonnalInformation = ({formData, setFormData}) => {
+const PersonnalInformation = ({ formData, setFormData, onNext, onBack }) => {
+  const [values, setValues] = useState({
+    firstName: "",
+    lastName: "",
+    age: "",
+    email: "",
+    phoneNumber: "",
+    aboutMe: "",
+  });
+
+  const [errors, setErrors] = useState({
+    firstName: "",
+    lastName: "",
+    age: "",
+    email: "",
+    phoneNumber: "",
+    aboutMe: "",
+  });
+
   const inputs = [
     {
       id: 1,
-      name: "firstname",
+      name: "firstName",
       type: "text",
       placeholder: "First Name",
       errorMessage:
         "3-16 characters \nshouldn't include any special character!",
-      label: "First Name",
+      label: "First Name:",
       required: true,
     },
     {
       id: 2,
-      name: "lastname",
+      name: "lastName",
       type: "text",
       placeholder: "Last Name",
       errorMessage:
@@ -25,7 +43,7 @@ const PersonnalInformation = ({formData, setFormData}) => {
     },
     {
       id: 3,
-      name: "age_range",
+      name: "age",
       type: "text",
       placeholder: "Age",
       label: "Age:",
@@ -41,10 +59,9 @@ const PersonnalInformation = ({formData, setFormData}) => {
       label: "Email address:",
       required: true,
     },
-
     {
       id: 5,
-      name: "phone",
+      name: "phoneNumber",
       type: "tel",
       placeholder: "Phone Number",
       label: "Phone Number:",
@@ -63,21 +80,70 @@ const PersonnalInformation = ({formData, setFormData}) => {
     },
   ];
 
-  const onChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const validateInput = (name, value) => {
+    switch (name) {
+      case "firstName":
+      case "lastName":
+        return /^[A-Za-z0-9]{3,16}$/.test(value);
+
+      case "age":
+        return Number(value) >= 18;
+
+      case "email":
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
+      case "phoneNumber":
+        return true; // You may add validation for phone numbers here
+
+      case "aboutMe":
+        return true; // You may add validation for aboutMe here
+
+      default:
+        return true; // Default to true for other fields
+    }
   };
+
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    const inputErrors = value.trim() === "" ? "This field is required" : validateInput(name, value) ? "" : inputs.find((input) => input.name === name).errorMessage;
+    setValues({ ...values, [name]: value });
+    setErrors({
+      ...errors,
+      [name]: inputErrors,
+    });
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const isFormValid = () => {
+    // Check if all required fields have valid inputs
+    return inputs.filter((input) => input.required).every((input) => values[input.name].trim() !== "" && errors[input.name] === "");
+  };
+
   return (
     <section className="inputs">
       {inputs.map((input) => (
         <FormInput
           key={input.id}
           {...input}
-          value={formData[input.name]}
-          // values={values}
+          value={values[input.name]}
           onChange={onChange}
           isBig={input.isBig}
+          errorMessage={errors[input.name]}
         />
       ))}
+      <div className="Buttons">
+        <button className="Button Back" onClick={onBack}>
+          Back
+        </button>
+        <button
+          className="submitButton"
+          type="button"
+          onClick={onNext}
+          disabled={!isFormValid()}
+        >
+          Next
+        </button>
+      </div>
     </section>
   );
 };

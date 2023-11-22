@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Services from "./pages/Services";
 import FormProject from "./pages/FormProject";
 import ProjectPage from "./pages/ProjectPage.jsx";
+import Profile from "./pages/profile.jsx"
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/Services" element={<Services />} />
         <Route path="/FormProject" element={<FormProject />} />
         <Route path="/project/:projectId" element={<ProjectPage/>} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </Router>
   );

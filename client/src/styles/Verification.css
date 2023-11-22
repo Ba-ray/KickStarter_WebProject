@@ -9,12 +9,18 @@
   align-items: center;
   justify-content: center;
   padding: 20px 30px;
-  gap: 20px;
   position: relative;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.082);
   border-radius: 15px;
+  margin-bottom: 5%;
 }
-
+.verification-container{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+}
 .mainHeading {
   font-size: 1.1em;
   color: rgb(15, 15, 15);
