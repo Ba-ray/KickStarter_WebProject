@@ -6,7 +6,7 @@ import { faFilter, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Filter from "../components/Filter"
 
-const UserProjectNav = ({onNavChange}) => {
+const UserProjectNav = ({onNavChange , onSearch}) => {
    const [searchKeyword, setSearchKeyword] = useState("");
    const [isSearchFocused, setIsSearchFocused] = useState(false);
     const [showFilter, setShowFilter] = useState(false);
@@ -18,8 +18,10 @@ const UserProjectNav = ({onNavChange}) => {
 
    const handleSearch = (e) => {
      if (e.key === "Enter") {
-       alert("Searching for: " + searchKeyword);
-       setSearchKeyword(""); // Clear the search input after searching
+      const searchValue = searchKeyword;
+      // alert("Searching for: " + searchKeyword);
+      setSearchKeyword(""); // Clear the search input after searching
+      onSearch(searchValue);
      }
    };
   return (

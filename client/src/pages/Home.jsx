@@ -30,10 +30,17 @@ const Home = () => {
   const [currentPageProjects, setCurrentPageProjects] = useState(1);
   const [totalPagesUsers, setTotalPagesUsers] = useState(1);
   const [totalPagesProjects, setTotalPagesProjects] = useState(1);
+  const [searchKeyword, setSearchKeyword] = useState("");
 
   const handleNavChange = (selectedNav) => {
     setNavDisplay(selectedNav);
   };
+
+  const handleSearch = (searchValue) => {
+    setSearchKeyword(searchValue);
+    fetchData(currentPageProjects, searchValue); // Pass the updated search value
+  };
+
 
   useEffect(() => {
     const wordChangeInterval = setInterval(() => {
@@ -66,13 +73,13 @@ const Home = () => {
   const itemsPerPage = 9; // Number of items per page
 
 
-  const fetchData = async (page) => {
+  const fetchData = async (page , keyword) => {
     try {
       const response = await axios.post("http://localhost:8080/api/Projects/projectpagination", {
         // page: currentPageProjects,
         page,
         limit: 9,
-        search: "",
+        search: keyword,
         timeFilter: "thisYear",
         tags: "",
       });
@@ -138,7 +145,7 @@ const Home = () => {
             </section>
             <section className="user-section">
                 <h6 className="user-section-header"> what are you looking for? </h6>
-                <UserProjectNav onNavChange={handleNavChange} />
+                <UserProjectNav onNavChange={handleNavChange} onSearch={handleSearch} />
                 <div className="search-list">
                     {navDisplay === "users" &&
                         displayUsers.map((user, index) => (
