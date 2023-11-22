@@ -51,7 +51,7 @@ const Slider = () => {
             <h1>Not a Member Yet?</h1>
             <p className="text">We're very glad to welcome you</p>
             <button className="swapButton" onClick={slideToRegister}>
-              Sign In
+              Sign Up
             </button>
           </div>
         </motion.div>
@@ -89,7 +89,7 @@ const Slider = () => {
             <h1>One Of Us?</h1>
             <p className="text">If you already have an account, just sign in</p>
             <button className="swapButton" onClick={slideToSignIn}>
-              Sign Up
+              Sign In
             </button>
           </div>
         </motion.div>

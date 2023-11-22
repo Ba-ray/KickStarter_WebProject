@@ -9,7 +9,7 @@ const FormInput = (props) => {
   const [focused, setFocused] = useState(false);
   const [showPassword, setShowPassword] = useState("false");
   const [isValid, setIsValid] = useState(false);
-
+ const [isInputDirty, setIsInputDirty] = useState(false);
   // console.log(showPassword)
   const { label, errorMessage, onChange, ...inputProps } = props;
 
@@ -40,10 +40,19 @@ const FormInput = (props) => {
     }
   };
 
+  // useEffect(() => {
+  //   const isValidInput = validateInput(inputProps.value, inputProps.name);
+  //   setIsValid(isValidInput);
+  // }, [inputProps.value, inputProps.name]);
+
+
   useEffect(() => {
-    const isValidInput = validateInput(inputProps.value, inputProps.name);
-    setIsValid(isValidInput);
-  }, [inputProps.value, inputProps.name]);
+    if (isInputDirty) {
+      const isValidInput = validateInput(inputProps.value, inputProps.name);
+      setIsValid(isValidInput);
+    }
+  }, [inputProps.value, inputProps.name, isInputDirty]);
+
 
   const handleFocus = () => {
     setFocused(!focused);
@@ -56,6 +65,11 @@ const FormInput = (props) => {
   const handleMouseDown = (e) => {
     // Prevent the input field from losing focus when clicking the eye icon
     e.preventDefault();
+  };
+
+  const handleInputChange = (e) => {
+    setIsInputDirty(true);
+    onChange(e);
   };
 
   const renderInput = () => {
@@ -114,7 +128,9 @@ const FormInput = (props) => {
     >
       <Form.Label>{label}</Form.Label>
       {renderInput()}
-      <span className="error-message-container">{errorMessage}</span>
+      {isInputDirty && !isValid && (
+        <span className="error-message-container">{errorMessage}</span>
+      )}
     </div>
   );
 };
