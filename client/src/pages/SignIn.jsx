@@ -4,7 +4,6 @@ import FormInput from "../components/FormInput";
 import { useNavigate } from "react-router-dom";
 import Slider from "../components/Slider";
 import SocialNetwork from "../components/SocialNetwork.jsx";
-import axios from "axios";
 
 // const SignIn = () => {
 //   const navigate = useNavigate();
@@ -102,27 +101,9 @@ const SignIn = () => {
     navigate("/register");
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    try {
-      // Send login data to the server
-      const response = await axios.post('http://localhost:8080/api/auth/login', values);
-
-      // Handle the response
-      console.log('Login response:', response.data);
-      
-      // Save the token into the local storage
-      localStorage.setItem('token', response.data.token);
-      
-      // Redirect to the home page or any other page as needed
-      navigate("/");
-    } catch (error) {
-      console.error('Error during login:', error);
-    }
-
     navigate("/");
-
   };
 
   const inputs = [
@@ -169,7 +150,7 @@ const SignIn = () => {
 
           <SocialNetwork className="SocialNetwork" />
           <div className="ButtonContainer">
-            <button className="BackButton" onClick={handleClick}>
+            <button className="italic-text-button" onClick={handleClick}>
               Not A Member Yet?
             </button>
             <button className="loginButton" onClick={handleSubmit} disabled={!isFormValid || !isPasswordValid}>

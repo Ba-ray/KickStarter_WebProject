@@ -1,4 +1,3 @@
-
 // import React, { useState } from "react";
 // import FormInput from "../FormInput";
 
@@ -389,22 +388,25 @@
 // };
  
 // export default AccountInformation;
+
 import React, { useState, useEffect } from "react";
 import FormInput from "../FormInput";
- 
+
+
 const AccountInformation = ({ formData, setFormData, onNext }) => {
   // const [formData, setFormData] = useState({
   //   username: "",
   //   password: "",
   //   confirmPassword: "",
   //   });
- 
+
+  
   const [validity, setValidity] = useState({
     username: false,
     password: false,
     confirmPassword: false,
   });
- 
+
   const inputs = [
     {
       id: 1,
@@ -436,31 +438,31 @@ const AccountInformation = ({ formData, setFormData, onNext }) => {
       required: true,
     },
   ];
- 
+
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
- 
+
   const validateInput = (name, value) => {
     switch (name) {
       case "username":
         return /^[A-Za-z0-9]{3,16}$/.test(value);
- 
+  
       case "password":
         return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\\da-zA-Z]).{8,20}$/.test(value);
- 
+  
       case "confirmPassword":
         return value  === formData.password;
- 
+  
       default:
         return false;
     }
   };
- 
- 
+  
+
   useEffect(() => {
     if (formData) {
       setValidity((prevValidity) => ({
@@ -471,19 +473,19 @@ const AccountInformation = ({ formData, setFormData, onNext }) => {
       }));
     }
   }, [formData]);
- 
- 
+  
+
   const isFormValid = () => {
     // Check if all fields are valid
     return Object.values(validity).every((valid) => valid);
   };
- 
+
   const handleNextClick = () => {
     if (isFormValid()) {
       onNext();
     }
   };
- 
+
   return (
     <section className="inputs">
       {inputs.map((input) => (
@@ -495,16 +497,17 @@ const AccountInformation = ({ formData, setFormData, onNext }) => {
           onChange={handleInputChange}
         />
       ))}
-      <button
-        className="submitButton"
-        type="button"
-        onClick={handleNextClick}
-        disabled={!isFormValid()}
-      >
-        Next
-      </button>
+       
+        <button
+          className="gradient-button"
+          type="button"
+          onClick={handleNextClick}
+          disabled={!isFormValid()}
+        >
+          Next
+        </button>
     </section>
   );
 };
- 
+
 export default AccountInformation;

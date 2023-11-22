@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "./styles/App.css";
 
 import SignIn from "./pages/SignIn";
 import Register from "./pages/Register";
@@ -7,7 +8,7 @@ import Home from "./pages/Home";
 import Services from "./pages/Services";
 import FormProject from "./pages/FormProject";
 import ProjectPage from "./pages/ProjectPage.jsx";
-import Profile from "./pages/profile.jsx"
+import Profile from "./pages/profile.jsx";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
         <Route path="/Register" element={<Register />} />
         <Route path="/Services" element={<Services />} />
         <Route path="/FormProject" element={<FormProject />} />
-        <Route path="/project/:projectId" element={<ProjectPage/>} />
+        <Route path="/project/:projectId" element={<ProjectPage />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
     </Router>

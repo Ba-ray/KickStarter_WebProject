@@ -59,14 +59,15 @@
 // };
 
 // export default Verification;
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles/Verification.css";
- 
+
 const Verification = ({ onBack }) => {
   const [otp, setOtp] = useState(["", "", "", ""]);
   const navigate = useNavigate();
- 
+
   const handleOtpChange = (e, index) => {
     const newValue = e.target.value;
     if (/^\d+$/.test(newValue) || newValue === "") {
@@ -78,14 +79,14 @@ const Verification = ({ onBack }) => {
       }
     }
   };
- 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const enteredOtp = otp.join("");
     console.log("Entered OTP:", enteredOtp);
     navigate("/");
   };
- 
+
   return (
     <div className="verification-container">
       <form className="otp-Form" onSubmit={handleSubmit}>
@@ -113,15 +114,15 @@ const Verification = ({ onBack }) => {
         </p>
       </form>
       <div className="buttonContainer" style={{width:"100%",display:"flex",justifyContent:"space-evenly",}}>
-        <button className="submitButton" type="button" onClick={onBack} style={{marginLeft:0,}}>
+        <button className="gradient-button" type="button" onClick={onBack} style={{marginLeft:0,}}>
           Back
         </button>
-        <button className="submitButton" type="submit" onClick={handleSubmit} style={{marginRight:0,}}>
+        <button className="gradient-button" type="submit" onClick={handleSubmit} style={{marginRight:0,}}>
           Submit
         </button>
       </div>
     </div>
   );
 };
- 
+
 export default Verification;

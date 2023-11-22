@@ -2,15 +2,49 @@
      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
+
+.gradient-button{
+  padding: 1% 4%;
+  margin-top: 2%;
+  border: none;
+  background: linear-gradient(45deg, #80e3b7, #75ddef);
+  border-radius: 10px;
+  box-shadow: 0px 0px 1% rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+  color: #ffff;
+  cursor: pointer;
+  align-self: flex-end;
+}
+.gradient-button:hover {
+  animation: glow 1s infinite; 
+}
+
 @keyframes glow {
   0% {
-    box-shadow: 0 0 20px rgba(52, 152, 219, 0.7); /* Start with a shadow */
+    box-shadow: 0 0 40px #75ddef; /* Start with a shadow */
   }
   50% {
-    box-shadow: 0 0 30px rgba(52, 152, 219, 0.7); /* Increase shadow size */
+    box-shadow: 0 0 45px #75ddef; /* Increase shadow size */
   }
   100% {
-    box-shadow: 0 0 20px rgba(52, 152, 219, 0.7); /* Return to original shadow */
+    box-shadow: 0 0 30px #75ddef; /* Return to original shadow */
   }
 }
+
+.italic-text-button{
+  display: none;
+    border:none;
+    background: transparent;
+    margin-right: 0;
+    font-style: oblique;
+    margin-bottom: 2%;
+    margin-left: 2%;
+
+}
+
+.italic-text-button:hover{
+  color: #80e3b7;
+  text-decoration: underline;
+}
+
 

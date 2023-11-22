@@ -5,7 +5,7 @@
   flex-direction: column;
   justify-content: space-between;
 }
- 
+
 .tabs {
   width: 100%;
   display: flex;
@@ -16,15 +16,15 @@
   padding: 0.75rem;
   margin-bottom: 20px;
 }
- 
+
 .tabs * {
   z-index: 2;
 }
- 
+
 .Steppercontainer input[type="checkbox"] {
   display: none;
 }
- 
+
 .tab {
   display: flex;
   flex-direction: column;
@@ -44,26 +44,26 @@
   transition: color 0.15s ease-in;
   position: relative;
 }
- 
+
 .tab.disabled {
   color: lightslategrey;
 }
- 
+
 .Steppercontainer input[type="checkbox"]:checked + .tabContent label {
   color: #42d693;
 }
- 
+
 .Steppercontainer input[type="checkbox"]:checked + .tabContent .StepperIcon img {
   animation: bounce 2s infinite;
 }
- 
- 
- 
+
+
+
 .Header {
   font-style: italic;
   margin-bottom: 2%;
 }
- 
+
 .glider {
   position: absolute;
   display: flex;
@@ -75,7 +75,7 @@
   transition: 0.25s ease-out;
   margin-top: 16%;
 }
- 
+
 .tabContent {
   display: flex;
   flex-direction: column;
@@ -93,7 +93,7 @@
 .tabs {
   transform: scale(0.6);
 }
- 
+
 .Button.signIn {
   display: block;
   background-color: transparent;
@@ -105,7 +105,7 @@
   font-style: italic;
   margin-top: 10px;
   transition: color 0.3s;
- 
+
   &:hover {
     color: #80e3b7;
   }
@@ -131,7 +131,7 @@
 .submitButton:hover {
   animation: glow 1s infinite; /* Apply the glow animation */
 }
- 
+
 .Button.Back {
   padding: 2% 6%;
   margin-top: 2%;
@@ -144,24 +144,14 @@
   cursor: pointer;
   align-self: flex-start;
 }
- 
+
 .Button.Back:hover {
   animation: glow 1s infinite; /* Apply the glow animation */
   /* background:white;
   color: #80e3b7 */
 }
- 
-@keyframes glow {
-  0% {
-    box-shadow: 0 0 40px #75ddef; /* Start with a shadow */
-  }
-  50% {
-    box-shadow: 0 0 45px #75ddef; /* Increase shadow size */
-  }
-  100% {
-    box-shadow: 0 0 30px #75ddef; /* Return to original shadow */
-  }
-}
+
+
 @keyframes bounce {
   0%,
   100% {
@@ -176,13 +166,13 @@
   align-self: center;
   cursor: pointer;
 }
- 
+
 @media screen and (max-width: 999px) {
   .tabContent .tab {
     display: none;
   }
 }
- 
+
 @media screen and (min-width: 1000px) {
   .Steppercontainer {
     display: flex;
@@ -195,18 +185,18 @@
     align-self: center;
     display: block;
   }
- 
+
   .tabs * {
     z-index: 2;
   }
- 
+
 }
- 
- 
- 
+
+
+
   @media screen and (min-width: 699px){
   .Button.signIn {
     display: none;
   }
 }
- 
+  
