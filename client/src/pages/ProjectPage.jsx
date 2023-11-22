@@ -8,33 +8,39 @@ import { faLock } from "@fortawesome/free-solid-svg-icons";
 
 const ProjectPage = (props) => {
 
-  const [openProject, setOpenProject] = useState(false);
-const {title,description,creator,isPrivate}= props.data
+  // const [openProject, setOpenProject] = useState(false);
+  const [projectData,setProjectData] = useState(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  // useEffect(() => {
-  //   // Fetch project data from the backend when the component mounts
-  //   // Simulating backend response for demonstration purposes
-  //   const mockBackendResponse = {
-  //     title: "Sample Project",
-  //     description:
-  //       "This is a sample project description. Replace it with your actual project details.",
-  //     creator: "John Doe",
-  //     isPrivate:true
-  //   };
+  useEffect(() => {
+    // Fetch project data from the backend when the component mounts
+    const fetchProjectData = async () => {
+      try {
+        const response = await fetch(`http://localhost:8080/api/Projects/GetProjectByID/${props.data._id}`);
+        const data = await response.json();
+        setProjectData(data);
+      } catch (error) {
+        console.error("Error fetching project data:", error);
+      }
+    };
 
-  //   setProjectData(data);
-  // }, []);
+    fetchProjectData();
+  }, [props.data.projectId]);
 
   const handleOpenProject = () => {
-    setOpenProject(!openProject);
+    setIsPopupOpen(true);
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
   };
 
   return (
     <div className="projectCardContainer">
-      {title&& (
+      {projectData && (
         <Card className="project-card">
           <Card.Header className="project-header">
-            {isPrivate && (
+            {projectData.isPrivate && (
               <FontAwesomeIcon icon={faLock} className="lock-icon" />
             )}
             <Card.Img
@@ -44,17 +50,11 @@ const {title,description,creator,isPrivate}= props.data
             />
           </Card.Header>
           <Card.Body className="project-body">
-            <Card.Title className="project-title">
-              {title}
-            </Card.Title>
-            <Card.Text className="project-text">
-              {creator}
-            </Card.Text>
-            <Card.Text className="project-text">
-              {description}
-            </Card.Text>
+            <Card.Title className="project-title">{projectData.projectTitle}</Card.Title>
+            <Card.Text className="project-text">{projectData.creator}</Card.Text>
+            <Card.Text className="project-text">{projectData.projectDescription}</Card.Text>
             <div className="project-links">
-              {props.data.isPrivate ? (
+              {projectData.isPrivate ? (
                 <Button variant="primary" className="project-button" disabled>
                   Project is Private
                 </Button>
@@ -76,7 +76,7 @@ const {title,description,creator,isPrivate}= props.data
           </Card.Body>
         </Card>
       )}
-      {openProject && <ProjectPopup onClose={handleOpenProject} />}
+      {isPopupOpen && <ProjectPopup onClose={handleClosePopup} />}
     </div>
   );
 };

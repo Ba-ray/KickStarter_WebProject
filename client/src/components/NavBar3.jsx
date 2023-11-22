@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
@@ -21,6 +21,7 @@ const NavBar3 = () => {
   const [showOffcanvas, setShowOffcanvas] = useState(false);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const navigate= useNavigate();
+  const [token,setToken] = useState(null);
 
   const handleSearch = (e) => {
     if (e.key === "Enter") {
@@ -28,6 +29,13 @@ const NavBar3 = () => {
       setSearchKeyword(""); // Clear the search input after searching
     }
   };
+
+  useEffect(() => {
+    // Fetch token from sessionStorage when the component mounts
+    const storedToken = localStorage.getItem("token");
+    console.log(storedToken);
+    setToken(storedToken || null); // Ensure token is set to null if not found
+  }, []);
 
   const handleClick=()=>{
     navigate("/signin")
@@ -56,8 +64,8 @@ const NavBar3 = () => {
               <Nav.Link className="nav-link" href="/Services">
                 Our Services
               </Nav.Link>
-              <Nav.Link className="nav-link" href="/FormProject">
-                Start Project
+              <Nav.Link href={token ? "/formproject" : "/signin"} className="nav-link">
+                Create Project
               </Nav.Link>
             </Nav>
             <Form
@@ -106,7 +114,7 @@ const NavBar3 = () => {
             <Nav.Link className="offcanvas-nav-link" href="/Services">
               Our Services
             </Nav.Link>
-            <Nav.Link className="offcanvas-nav-link" href="#pricing">
+            <Nav.Link href={token ? "/formproject" : "/signin"} className="offcanvas-nav-link">
               Create Project
             </Nav.Link>
             <Form

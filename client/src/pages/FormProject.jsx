@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Form,
   Button,
@@ -10,6 +10,8 @@ import {
 import NavBar3 from "../components/NavBar3";
 import "../styles/FormProject.css"
 import * as yup from "yup";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
 const FormProject = () => {
@@ -22,6 +24,8 @@ const FormProject = () => {
     fundingGoal: "",
     projectImage: "",
   });
+  const navigate = useNavigate();
+  const [token,setToken] = useState(null);
 
   const projectCategories = [
     "Art",
@@ -55,6 +59,13 @@ const FormProject = () => {
     fundingGoal: yup.number().required("Please enter a valid funding goal."),
     projectImage: yup.mixed().required("Please choose a project image."),
   });
+
+  useEffect(() => {
+    // Fetch token from sessionStorage when the component mounts
+    const storedToken = localStorage.getItem("token");
+    console.log(storedToken);
+    setToken(storedToken || null); // Ensure token is set to null if not found
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -95,19 +106,40 @@ const FormProject = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setValidated(true);
 
-    schema
-      .validate(projectData, { abortEarly: false })
-      .then(() => {
-        console.log("Form is valid. Submitting:", projectData);
-        // Add your form submission logic here
-      })
-      .catch((errors) => {
-        console.error("Validation errors:", errors.errors);
+    try {
+      await schema.validate(projectData, { abortEarly: false });
+      console.log("Form is valid. Submitting:", projectData);
+  
+      const formData = new FormData();
+      for (const key in projectData) {
+        formData.append(key, projectData[key]);
+      }
+      const storedToken = localStorage.getItem("token");
+      setToken(storedToken || null);
+
+      const decodedToken = JSON.parse(atob(storedToken.split('.')[1]));
+
+      // Extracting the user ID from the payload
+      const creator = decodedToken.userId;
+
+      formData.append("creator", creator);
+  
+      const response = await axios.post(`http://localhost:8080/api/projects/createproject`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       });
+  
+      console.log('Project Creation Response:', response.data);
+      navigate("/");
+    } catch (errors) {
+      console.error("Validation errors:", errors.errors);
+      // Display validation errors to the user in the UI
+    }
   };
 
   return (
