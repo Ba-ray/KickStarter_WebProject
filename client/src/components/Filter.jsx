@@ -97,7 +97,7 @@ function Filter() {
 
     return (
       <div
-        className="dropdown"
+        className="filter-dropdown"
       >
         <div className="filters-container">
           <div className="label-select-conatiner">

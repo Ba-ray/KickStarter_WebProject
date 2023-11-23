@@ -96,6 +96,15 @@
   letter-spacing: 0.05em;
 }
 
+.dropdown {
+    margin-right: 10%;
+    padding: 0 10%;
+    display: flex;
+    /* height: 100%; */
+    align-items: center;
+    justify-content: center;
+}
+
 .offcanva-search-button {
   color: #80e3b7;
   border: none;
@@ -157,4 +166,11 @@
   .nav-link {
     display: none;
   }
+  .dropdown{
+    color: #333000 !important;
+  }
+  .nav-link{
+    color: #333000 !important;
+  }
+  
 }
