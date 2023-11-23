@@ -29,7 +29,7 @@ const components = {
   DropdownIndicator: null,
 };
 
-function Filter({isInPage,isOpen,onClose}) {
+function Filter() {
     const [filter, setFilter] = useState(filterOptions[0]);
     // const [category, setCategory] = useState(categoryOptions[0]);
     const [selectedTimeFilter, setSelectedTimeFilter] = useState(
@@ -90,22 +90,16 @@ function Filter({isInPage,isOpen,onClose}) {
           "to",
           customDateRange.endDate
         );
-      }
-      if (isInPage !== "SearchPage") {
-        onClose();
-      }
-    };
+    };}
 
     const isCustomRangeValid =
       customDateRange.startDate && customDateRange.endDate;
 
     return (
       <div
-        className={`${
-          isInPage === "SearchPage" ? "search-page-popup" : "dropdown"
-        } ${isOpen ? "open" : ""}`}
+        className="dropdown"
       >
-        <div className={`filters-container ${isInPage}`}>
+        <div className="filters-container">
           <div className="label-select-conatiner">
             <label className="search-dropdown-label">Filter by:</label>
 
@@ -203,7 +197,7 @@ function Filter({isInPage,isOpen,onClose}) {
               })}
             />
           </div>
-          <button className="search-dropdown-button" onClick={handleSearch}>
+          <button className="gradient-button" onClick={handleSearch}>
             Search
           </button>
         </div>

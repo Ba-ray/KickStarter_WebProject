@@ -1,6 +1,7 @@
 .filters-container{
-  width:50vh;
-  left:0
+  position: sticky;
+  left:0;
+  bottom: 60%;
 }
 
 .search-input {
@@ -48,9 +49,9 @@
 /* Styles for the filter popup */
 .dropdown {
   overflow: visible;
-  position: absolute;
+  /* position: absolute; */
   left: 0; /* Adjust the left position to 0 to place it on the left side */
-  top: 130%; /* Adjust the top position as needed */
+ 
   background-color: #fff;
   border: 1px solid #d1d1d1;
   border-radius: 10px;
@@ -89,3 +90,4 @@ input[type="text"] {
   border-radius: 5px;
   margin-bottom: 10px;
 }
+

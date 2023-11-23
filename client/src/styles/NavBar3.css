@@ -8,10 +8,12 @@
   position: fixed;
   top: 2%;
   width: 100%;
-  height: 50px;
+  height: 60px;
   background: linear-gradient(to right, #80e3b7, #75ddef);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 1000;
+  display: flex;
+  align-items: center;
 }
 
 .search-input {
@@ -45,8 +47,11 @@
   cursor: pointer;
   background-color: #80e3b7;
 }
-
-.join-now-button {
+.join-now-button-offcanvas{
+  border: none;
+  color: #80e3b7;
+}
+.join-now-button{
   color: #fff;
   margin-left: 10px;
   border: none;
@@ -145,7 +150,7 @@
 
 /* Media query for responsiveness */
 
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   .search-button,
   .search-bar,
   .join-now-button,

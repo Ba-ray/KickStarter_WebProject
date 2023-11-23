@@ -3,11 +3,9 @@
   /* height: 470px; */
 }
 .project-card {
- width: 100%;
-  padding: 15px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 100% !important;
+    width: 100%;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
 }
 
 .project-header {

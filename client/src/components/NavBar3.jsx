@@ -64,7 +64,10 @@ const NavBar3 = () => {
               <Nav.Link className="nav-link" href="/Services">
                 Our Services
               </Nav.Link>
-              <Nav.Link href={token ? "/formproject" : "/signin"} className="nav-link">
+              <Nav.Link
+                href={token ? "/formproject" : "/signin"}
+                className="nav-link"
+              >
                 Create Project
               </Nav.Link>
             </Nav>
@@ -114,7 +117,10 @@ const NavBar3 = () => {
             <Nav.Link className="offcanvas-nav-link" href="/Services">
               Our Services
             </Nav.Link>
-            <Nav.Link href={token ? "/formproject" : "/signin"} className="offcanvas-nav-link">
+            <Nav.Link
+              href={token ? "/formproject" : "/signin"}
+              className="offcanvas-nav-link"
+            >
               Create Project
             </Nav.Link>
             <Form
@@ -140,6 +146,13 @@ const NavBar3 = () => {
                 <FontAwesomeIcon icon={faSearch} />
               </Button>
             </Form>
+            <Button
+              variant="outline-success"
+              className="join-now-button-offcanvas"
+              onClick={handleClick}
+            >
+              Join Now
+            </Button>
           </Nav>
           <SocialLinks className="offcanvas-social-links" />
         </Offcanvas.Body>

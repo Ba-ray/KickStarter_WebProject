@@ -27,31 +27,35 @@ const UserProjectNav = ({onNavChange , onSearch}) => {
   return (
     <Container fluid className="user-project-nav-container">
       <Form
-        className={`d-flex user-project-search-input ${isSearchFocused ? "focused" : ""}`}
+        className={`d-flex user-project-search-input ${
+          isSearchFocused ? "focused" : ""
+        }`}
       >
-        <FormControl
-          type="search"
-          placeholder="Type Something"
-          className="mr-2 search-bar-nav"
-          aria-label="Search"
-          value={searchKeyword}
-          onChange={(e) => setSearchKeyword(e.target.value)}
-          onFocus={() => setIsSearchFocused(true)}
-          onBlur={() => setIsSearchFocused(false)}
-          onKeyPress={handleSearch}
-        />
-        <Button variant="outline-success" className="search-button-nav">
-          <FontAwesomeIcon icon={faSearch} />
-        </Button>
+          <div className="search-container">
+            <FormControl
+              type="search"
+              placeholder="Type Something"
+              className="mr-2 search-bar-nav"
+              aria-label="Search"
+              value={searchKeyword}
+              onChange={(e) => setSearchKeyword(e.target.value)}
+              onFocus={() => setIsSearchFocused(true)}
+              onBlur={() => setIsSearchFocused(false)}
+              onKeyPress={handleSearch}
+            />
+            <Button variant="outline-success" className="search-button-nav">
+              <FontAwesomeIcon icon={faSearch} />
+            </Button>
 
-        <Button
-          variant="outline-success"
-          className="search-button-nav"
-          onClick={handleFilterChange}
-        >
-          <FontAwesomeIcon icon={faFilter} />
-        </Button>
-        {showFilter && <Filter />}
+            <Button
+              variant="outline-success"
+              className="search-button-nav"
+              onClick={handleFilterChange}
+            >
+              <FontAwesomeIcon icon={faFilter} />
+            </Button>
+          </div>
+          {showFilter && <Filter />}
       </Form>
 
       <Nav className="user-project-nav">

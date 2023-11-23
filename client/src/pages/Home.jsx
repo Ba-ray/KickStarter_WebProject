@@ -190,11 +190,11 @@ const Home = () => {
                 </div>
             </section>
 
-            <div className="section-header-container">
+            {/* <div className="section-header-container">
                 <h1 className="section-header">Get In </h1>
-                <h1 className="section-header highlited-word">Touch</h1>
+                <h1 className="section-header highlited-word">Touch</h1> */}
                 <Contact />
-            </div>
+            
         </section>
     </div>
   );

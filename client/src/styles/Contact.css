@@ -11,7 +11,7 @@
 
 .contact-content {
   max-width: 800px;
-  margin: 0 auto;
+  margin-left: 2%;
   
 }
 
@@ -27,7 +27,7 @@
 }
 
 .contact-form {
-  max-width: 800px;
+  max-width: 100%;
   margin: 40px auto;
   padding: 20px;
   background-color: #fff;
