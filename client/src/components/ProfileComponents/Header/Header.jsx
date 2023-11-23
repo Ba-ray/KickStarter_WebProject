@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import './Header.css';
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -22,6 +23,7 @@ const Header = () => {
 
   return (
     <nav className={`header ${isScrolled ? "scrolled" : ""}`}>
+      <div className="linkhome"><Link to="/">Go back to Home</Link></div>
       <div className="image"><img src="" alt=""></img></div>
       <div className="info">
         <div className="candidate-name">{candidateName}</div>

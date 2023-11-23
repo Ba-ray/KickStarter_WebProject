@@ -85,8 +85,9 @@
     const validateInput = (name, value) => {
       switch (name) {
         case "firstname":
+          return true;
         case "lastname":
-          return /^[A-Za-z0-9]{3,16}$/.test(value);
+          return true;
   
         case "age_range":
           return Number(value) >= 18;
@@ -95,19 +96,20 @@
           return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
   
         case "phone":
-          return true; // You may add validation for phone numbers here
+          return true; 
   
         case "aboutMe":
-          return true; // You may add validation for aboutMe here
+          return true; 
   
         default:
-          return true; // Default to true for other fields
+          return true; 
       }
     };
   
     const onChange = (e) => {
       const { name, value } = e.target;
-      const inputErrors = value.trim() === "" ? "This field is required" : validateInput(name, value) ? "" : inputs.find((input) => input.name === name).errorMessage;
+      const trimmedValue = value ? value.trim() : "";
+      const inputErrors = trimmedValue === "" ? "This field is required" : validateInput(name, trimmedValue) ? "" : inputs.find((input) => input.name === name).errorMessage;
       setValues({ ...values, [name]: value });
       setErrors({
         ...errors,
@@ -117,7 +119,6 @@
     };
   
     const isFormValid = () => {
-      // Check if all required fields have valid inputs
       return inputs.filter((input) => input.required).every((input) => values[input.name].trim() !== "" && errors[input.name] === "");
     };
   

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "../styles/UserCard.css"; // Import your CSS file
 import profilepic from "../images/businessman.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,8 +13,31 @@ import { faLinkedin, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
 const UserCard = (props) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-const { username, location, aboutMe} = props.data;
+const { username, aboutMe} = props.data;
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
+
+  const navigateToProfile = () => {
+    const userData = {
+      name: props.data.username,
+      location: "City, Country",
+      aboutMe: props.data.aboutMe,
+      age: props.data.age_range,
+      email: props.data.email,
+      firstname: props.data.firstname,
+      lastname: props.data.lastname,
+      phone: props.data.phone,
+    };
+
+    console.log(userData)
+
+    // Navigate to /profile while passing user data as state
+    return (
+      <Link to={{ pathname: "/profile", state: { userData } }}>
+        <FontAwesomeIcon icon={faUser} className="socials profile" />
+      </Link>
+    );
+  };
+  
 
   return (
     <div className="cardContainer">
@@ -41,9 +65,10 @@ const { username, location, aboutMe} = props.data;
                 className="socials instagram"
               />
             </a>
-            <a href="/profile">
+            {/* <a href="/profile">
               <FontAwesomeIcon icon={faUser} className="socials profile" />
-            </a>
+            </a> */}
+            {navigateToProfile()}
           </div>
         </div>
       </main>
