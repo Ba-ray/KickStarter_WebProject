@@ -16,30 +16,6 @@ const app = express();
 app.use(express.json())
 app.use('/uploads', express.static('public/uploads'));
 
-<<<<<<< HEAD
-// app.get('/api/users', (req, res) => {
-//     res.json({
-//         message: "Hello World"
-//     });
-// })
-
-
-
-// app.post('/api/users/login', (req, res) => {
-//     try {
-//         const { username, password } = req.body;
-//         res.json({
-//             message: "Your username is " + username + "    and your password is " + password
-//         });
-//     } catch (error) {
-//         res.status(400).json({ message: 'Invalid request body' });
-//     }
-// });
-
-
-
-=======
->>>>>>> f4a2f496cdeb8c9c6cb4856541036441087a5387
 
 //DB
 mongoose.connect(process.env.MONGO_URI, {
