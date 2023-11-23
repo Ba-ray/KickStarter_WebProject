@@ -4,6 +4,7 @@ import FormInput from "../components/FormInput";
 import { useNavigate } from "react-router-dom";
 import Slider from "../components/Slider";
 import SocialNetwork from "../components/SocialNetwork.jsx";
+import axios from "axios"
 
 // const SignIn = () => {
 //   const navigate = useNavigate();
@@ -101,10 +102,28 @@ const SignIn = () => {
     navigate("/register");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate("/");
+    try {
+      // Send login data to the server
+      const response = await axios.post(
+        "http://localhost:8080/api/auth/login",
+        values
+      );
+
+      // Handle the response
+      console.log("Login response:", response.data);
+
+      // Save the token into the local storage
+      localStorage.setItem("token", response.data.token);
+
+      // Redirect to the home page or any other page as needed
+      navigate("/");
+    } catch (error) {
+      console.error("Error during login:", error);
+    }
   };
+
 
   const inputs = [
     {

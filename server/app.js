@@ -14,9 +14,7 @@ const userRoute = require('./routes/Users')
 
 const app = express();
 app.use(express.json())
-<<<<<<< HEAD
 app.use('/uploads', express.static('public/uploads'));
-=======
 
 // app.get('/api/users', (req, res) => {
 //     res.json({
@@ -38,9 +36,6 @@ app.use('/uploads', express.static('public/uploads'));
 // });
 
 
-
-
->>>>>>> frontend
 
 
 //DB
