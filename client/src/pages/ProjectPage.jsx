@@ -47,7 +47,7 @@ const ProjectPage = (props) => {
           </Card.Header>
           <Card.Body className="project-body">
             <Card.Title className="project-title">{projectData.projectTitle}</Card.Title>
-            <Card.Text className="project-text">{projectData.creator}</Card.Text>
+            <Card.Text className="project-text">By: {projectData.creator.username}</Card.Text>
             <Card.Text className="project-text">{projectData.projectDescription}</Card.Text>
             <div className="project-links">
               {projectData.isPrivate ? (
@@ -72,7 +72,7 @@ const ProjectPage = (props) => {
           </Card.Body>
         </Card>
       )}
-      {isPopupOpen && <ProjectPopup onClose={handleClosePopup} />}
+      {isPopupOpen && <ProjectPopup onClose={handleClosePopup} projectData={projectData}/>}
     </div>
   );
 };

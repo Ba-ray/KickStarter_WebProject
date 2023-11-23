@@ -133,6 +133,10 @@ router.post("/projectPagination", async (req, res) => {
         console.log("Constructed Query:", query);
 
         const projects = await Project.find(query)
+            .populate({
+                path: 'creator',
+                select: 'username' // Specify the fields to include, in this case, only the username
+            })
             .sort({ createdAt: -1 })
             .skip((page - 1) * limit)
             .limit(parseInt(limit));
@@ -151,6 +155,11 @@ router.post("/projectPagination", async (req, res) => {
         res.status(500).json({ message: "Server Error" });
     }
 });
+
+
+
+
+
 
 
 function isValidProjectId(projectId) {
