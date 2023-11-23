@@ -41,6 +41,7 @@ const SignIn = () => {
       navigate("/");
     } catch (error) {
       setErrorMessage(error.response?.data?.message || "An error occurred.");
+      alert(errorMessage);
       console.error("Error during login:", error);
     }
   };
@@ -52,8 +53,8 @@ const SignIn = () => {
       name: "username",
       type: "text",
       placeholder: "Username",
-      errorMessage:
-        "3-16 characters \nshouldn't include any special character!",
+      // errorMessage:
+      //   "3-16 characters \nshouldn't include any special character!",
       label: "Username:",
       required: true,
     },
@@ -62,14 +63,14 @@ const SignIn = () => {
       name: "password",
       type: "password",
       placeholder: "Password",
-      errorMessage:
-        "8-20 characters\nat least 1 letter, 1 number and 1 special character!",
+      // errorMessage:
+      //   "8-20 characters\nat least 1 letter, 1 number and 1 special character!",
       label: "Password:",
       required: true,
     },
   ];
 
-  const isFormValid = inputs.every((input) => values[input.name] && values[input.name].length > 0);
+  // const isFormValid = inputs.every((input) => values[input.name] && values[input.name].length > 0);
   const isPasswordValid = values.password && values.password.length > 0;
 
   return (
@@ -86,7 +87,6 @@ const SignIn = () => {
                 onChange={onChange}
               />
             ))}
-            <span className="error-message-container">{errorMessage}</span>
           </section>
 
           <SocialNetwork className="SocialNetwork" />
@@ -94,7 +94,7 @@ const SignIn = () => {
             <button className="italic-text-button" onClick={handleClick}>
               Not A Member Yet?
             </button>
-            <button className="loginButton" onClick={handleSubmit} disabled={!isFormValid || !isPasswordValid}>
+            <button className="loginButton" onClick={handleSubmit} disabled={!isPasswordValid}>
               Submit
             </button>
           </div>

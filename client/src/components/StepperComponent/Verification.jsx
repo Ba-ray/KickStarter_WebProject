@@ -23,26 +23,20 @@ const Verification = ({ formData,onBack }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const enteredOtp = otp.join("");
-    // console.log("Entered OTP:", enteredOtp);
-    e.preventDefault();
     try {
-      // Send registration data to the server
+
       const response = await axios.post("http://localhost:8080/api/auth/register",formData);
 
       console.log(formData);
 
-      // Handle the response (optional)
       console.log("Registration response:", response.data);
+      navigate("/signin");
 
-      // Redirect to the home page or another page if needed
-      // For example, using React Router:
-      // history.push('/home');
     } catch (error) {
       console.error("Error during registration:", error);
-      // Handle error, show a message, etc.
+      let messageError = (error.response?.data?.message || "An error occurred.");
+      alert(messageError);
     }
-    navigate("/");
   };
 
   return (
