@@ -11,6 +11,7 @@ import { Pagination } from "react-bootstrap";
 import { generateUsers, generateProjects } from "./Test";
 import axios from "axios";
 
+
 const Home = () => {
   const navigate = useNavigate();
 
@@ -198,6 +199,9 @@ const Home = () => {
           </div>
         </section>
 
+        {/* <div className="section-header-container">
+                <h1 className="section-header">Get In </h1>
+                <h1 className="section-header highlited-word">Touch</h1> */}
         <Contact />
       </section>
     </div>

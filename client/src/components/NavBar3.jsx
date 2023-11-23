@@ -16,6 +16,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDoorOpen, faSearch, faUserTie } from "@fortawesome/free-solid-svg-icons";
 import "../styles/NavBar3.css"; // Import your CSS file
 import SocialLinks from "./SocialLinks";
+import { NavLink } from "react-router-dom";
 
 const NavBar3 = () => {
   const [searchKeyword, setSearchKeyword] = useState("");
@@ -65,18 +66,23 @@ const NavBar3 = () => {
           />
           <Navbar.Collapse id="navbarResponsive">
             <Nav className="me-auto">
-              <Nav.Link className="nav-link" href="/">
+              <NavLink className="nav-link" to="/" activeClassName="active">
                 Home
-              </Nav.Link>
-              <Nav.Link className="nav-link" href="/Services">
-                Our Services
-              </Nav.Link>
-              <Nav.Link
-                href={token ? "/formproject" : "/signin"}
+              </NavLink>
+              <NavLink
                 className="nav-link"
+                to="/Services"
+                activeClassName="active"
+              >
+                Our Services
+              </NavLink>
+              <NavLink
+                to={token ? "/formproject" : "/signin"}
+                className="nav-link"
+                activeClassName="active"
               >
                 Create Project
-              </Nav.Link>
+              </NavLink>
             </Nav>
             <Form
               className={`d-flex search-input ${
@@ -129,18 +135,27 @@ const NavBar3 = () => {
         </Offcanvas.Header>
         <Offcanvas.Body>
           <Nav className="flex-column">
-            <Nav.Link className="offcanvas-nav-link" href="/">
-              Home
-            </Nav.Link>
-            <Nav.Link className="offcanvas-nav-link" href="/Services">
-              Our Services
-            </Nav.Link>
-            <Nav.Link
-              href={token ? "/formproject" : "/signin"}
+            <NavLink
               className="offcanvas-nav-link"
+              to="/"
+              activeClassName="active"
+            >
+              Home
+            </NavLink>
+            <NavLink
+              className="offcanvas-nav-link"
+              to="/Services"
+              activeClassName="active"
+            >
+              Our Services
+            </NavLink>
+            <NavLink
+              to={token ? "/formproject" : "/signin"}
+              className="offcanvas-nav-link"
+              activeClassName="active"
             >
               Create Project
-            </Nav.Link>
+            </NavLink>
             <Form
               className={`d-flex offcanvas-search-input ${
                 isSearchFocused ? "focused" : ""
@@ -165,13 +180,23 @@ const NavBar3 = () => {
               </Button>
             </Form>
             {token ? (
-             <Nav className="flex-column" style={{marginTop:"25%"}}>
-                <Nav.Link  className="offcanvas-nav-link" href="./profile">Profile</Nav.Link>
-                
-                <Nav.Link  className="offcanvas-nav-link" onClick={handleLogout}>
+              <Nav className="flex-column" style={{ marginTop: "25%" }}>
+                <NavLink
+                  className="offcanvas-nav-link"
+                  to="./profile"
+                  activeClassName="active"
+                >
+                  Profile
+                </NavLink>
+
+                <NavLink
+                  className="offcanvas-nav-link"
+                  onClick={handleLogout}
+
+                >
                   LogOut
-                </Nav.Link>
-            </Nav>
+                </NavLink>
+              </Nav>
             ) : (
               <Button
                 variant="outline-success"

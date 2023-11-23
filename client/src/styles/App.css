@@ -48,3 +48,11 @@
 }
 
 
+.breadcrumb {
+  background-color: #f8f9fa;
+  padding: 10px;
+}
+
+.breadcrumb-item {
+  font-size: 14px;
+}
