@@ -12,7 +12,6 @@ import {
   NavDropdown
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDoorOpen, faSearch, faUserTie } from "@fortawesome/free-solid-svg-icons";
 import "../styles/NavBar3.css"; // Import your CSS file
@@ -28,15 +27,14 @@ const NavBar3 = () => {
   const handleSearch = (e) => {
     if (e.key === "Enter") {
       alert("Searching for: " + searchKeyword);
-      setSearchKeyword(""); // Clear the search input after searching
+      setSearchKeyword(""); 
     }
   };
 
   useEffect(() => {
-    // Fetch token from sessionStorage when the component mounts
     const storedToken = localStorage.getItem("token");
     console.log(storedToken);
-    setToken(storedToken || null); // Ensure token is set to null if not found
+    setToken(storedToken || null); 
   }, []);
 
   const handleClick=()=>{
@@ -45,10 +43,8 @@ const NavBar3 = () => {
 
     // Function to handle logout
     const handleLogout = () => {
-      // Perform any logout-related tasks, such as clearing tokens or user data
-      localStorage.removeItem("token"); // Assuming you store the token in localStorage
+      localStorage.removeItem("token"); 
 
-      // Redirect to the sign-in page or any other desired page after logout
       navigate("/signin");
     };
 
@@ -90,7 +86,7 @@ const NavBar3 = () => {
               <FormControl
                 type="search"
                 placeholder="Type Something"
-                className="mr-2 search-bar"
+                className="mr-2 mt-2 mb-2 search-bar"
                 aria-label="Search"
                 value={searchKeyword}
                 onChange={(e) => setSearchKeyword(e.target.value)}
