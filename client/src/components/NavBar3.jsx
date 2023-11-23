@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
   Navbar,
@@ -9,10 +9,12 @@ import {
   Button,
   Offcanvas,
   FormControl,
+  NavDropdown
 } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faDoorOpen, faSearch, faUserTie } from "@fortawesome/free-solid-svg-icons";
 import "../styles/NavBar3.css"; // Import your CSS file
 import SocialLinks from "./SocialLinks";
 
@@ -40,6 +42,15 @@ const NavBar3 = () => {
   const handleClick=()=>{
     navigate("/signin")
   }
+
+    // Function to handle logout
+    const handleLogout = () => {
+      // Perform any logout-related tasks, such as clearing tokens or user data
+      localStorage.removeItem("token"); // Assuming you store the token in localStorage
+
+      // Redirect to the sign-in page or any other desired page after logout
+      navigate("/signin");
+    };
 
   return (
     <>
@@ -87,17 +98,28 @@ const NavBar3 = () => {
                 onBlur={() => setIsSearchFocused(false)}
                 onKeyPress={handleSearch}
               />
-              <Button variant="outline-success" className="search-button">
-                <FontAwesomeIcon icon={faSearch} />
-              </Button>
+              {token ? (
+                <NavDropdown
+                  className="dropdown"
+                  title={<FontAwesomeIcon icon={faUserTie} size={50} />}
+                  id="navbarScrollingDropdown"
+                >
+                  <NavDropdown.Item href="./profile">Profile</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item onClick={handleLogout}>
+                    LogOut
+                  </NavDropdown.Item>
+                </NavDropdown>
+              ) : (
+                <Button
+                  variant="outline-success"
+                  className="join-now-button"
+                  onClick={handleClick}
+                >
+                  Join Now
+                </Button>
+              )}
             </Form>
-            <Button
-              variant="outline-success"
-              className="join-now-button"
-              onClick={handleClick}
-            >
-              Join Now
-            </Button>
           </Navbar.Collapse>
         </Container>
       </Navbar>
@@ -146,13 +168,23 @@ const NavBar3 = () => {
                 <FontAwesomeIcon icon={faSearch} />
               </Button>
             </Form>
-            <Button
-              variant="outline-success"
-              className="join-now-button-offcanvas"
-              onClick={handleClick}
-            >
-              Join Now
-            </Button>
+            {token ? (
+             <Nav className="flex-column" style={{marginTop:"25%"}}>
+                <Nav.Link  className="offcanvas-nav-link" href="./profile">Profile</Nav.Link>
+                
+                <Nav.Link  className="offcanvas-nav-link" onClick={handleLogout}>
+                  LogOut
+                </Nav.Link>
+            </Nav>
+            ) : (
+              <Button
+                variant="outline-success"
+                className="join-now-button"
+                onClick={handleClick}
+              >
+                Join Now
+              </Button>
+            )}
           </Nav>
           <SocialLinks className="offcanvas-social-links" />
         </Offcanvas.Body>
