@@ -23,7 +23,7 @@ const Header = () => {
 
   return (
     <nav className={`header ${isScrolled ? "scrolled" : ""}`}>
-      <div className="linkhome"><Link to="/">Go back to Home</Link></div>
+      <a href="/" class="top-left-link">Go back to Home</a>
       <div className="image"><img src="" alt=""></img></div>
       <div className="info">
         <div className="candidate-name">{candidateName}</div>

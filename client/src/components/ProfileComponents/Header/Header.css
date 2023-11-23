@@ -56,4 +56,9 @@
   color: #FFFF; /* Link color */
   /* Additional link styling */
 }
-  
+
+.top-left-link {
+  position: absolute;
+  top: 10%;
+  left: 2%;
+}
