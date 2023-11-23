@@ -12,7 +12,7 @@ import { faLinkedin, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
 const UserCard = (props) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-const { name, location, description} = props.data;
+const { username, location, aboutMe} = props.data;
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
 
   return (
@@ -22,12 +22,12 @@ const { name, location, description} = props.data;
           <img className="profile-pic" src={profilepic} alt="Profile" />
         </div>
         <div className="details">
-          <h1 className="name">{name}</h1>
+          <h1 className="name">{username}</h1>
           <div className="location">
             <FontAwesomeIcon icon={faLocation} />
-            <span>{location}</span>
+            <span>Beirut, Lebanon</span> {/*change later to location if needed*/}
           </div>
-          <p className="description">{description}</p>
+          <p className="description">{aboutMe}</p>
           <div className="socialDiv">
             <a href="#github">
               <FontAwesomeIcon icon={faWhatsapp} className="socials github" />

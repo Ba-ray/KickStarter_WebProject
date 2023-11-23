@@ -137,6 +137,11 @@ const FormProject = () => {
       console.log('Project Creation Response:', response.data);
       navigate("/");
     } catch (errors) {
+
+      if (errors.response && errors.response.data && errors.response.data.message === "Project Name already exists.") {
+        // Display an alert to the user
+        alert("Project Name already exists. Please choose a different name.");
+      }
       console.error("Validation errors:", errors.errors);
       // Display validation errors to the user in the UI
     }

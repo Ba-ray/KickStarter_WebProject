@@ -38,7 +38,8 @@ const Home = () => {
 
   const handleSearch = (searchValue) => {
     setSearchKeyword(searchValue);
-    fetchData(currentPageProjects, searchValue); // Pass the updated search value
+    fetchProjectData(currentPageProjects, searchValue); // Pass the updated search value
+    fetchUserData(currentPageUsers, searchValue); // Pass the updated search value
   };
 
 
@@ -73,7 +74,7 @@ const Home = () => {
   const itemsPerPage = 9; // Number of items per page
 
 
-  const fetchData = async (page , keyword) => {
+  const fetchProjectData = async (page , keyword) => {
     try {
       const response = await axios.post("http://localhost:8080/api/Projects/projectpagination", {
         // page: currentPageProjects,
@@ -92,31 +93,48 @@ const Home = () => {
         console.error("Invalid response format:", response);
       }
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error fetchProjecting data:", error);
     }
   };
 
-  const displayUsers = users.slice(
-    (currentPageUsers - 1) * itemsPerPage,
-    currentPageUsers * itemsPerPage
-  );
+  const fetchUserData = async (page , keyword) => {
+    try{
+      const response = await axios.post("http://localhost:8080/api/user/userPagination", {
+        page,
+        limit: 9,
+        search: keyword,
+      });
 
+      if (response.data){
+        setUsers(response.data.users);
+        setTotalPagesUsers(response.data.totalPages);
+      }
+    }
+    catch(error){
+      console.error("Error fetchProjecting data:", error);
+    }
+  };
 
   const handleUsersPageChange = (page) => {
     setCurrentPageUsers(page);
+    fetchUserData(page);
   };
 
   const handleProjectsPageChange = (page) => {
     setCurrentPageProjects(page);
-    fetchData(page);
+    fetchProjectData(page);
   };
 
 
   useEffect(() => {
-    fetchData(currentPageProjects);
+    fetchProjectData(currentPageProjects);
     console.log(projects)
   }, [currentPageProjects]);
 
+  useEffect(() => {
+    fetchUserData(currentPageUsers);
+    console.log(users)
+  }, [currentPageUsers]);
 
 
   return (
@@ -148,7 +166,7 @@ const Home = () => {
                 <UserProjectNav onNavChange={handleNavChange} onSearch={handleSearch} />
                 <div className="search-list">
                     {navDisplay === "users" &&
-                        displayUsers.map((user, index) => (
+                        users.map((user, index) => (
                             <UserCard key={index} data={user} />
                         ))}
 
