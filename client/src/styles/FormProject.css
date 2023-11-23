@@ -4,6 +4,7 @@
 
 .my-5{
   font-size: 16px;
+  margin-top: 10% !important;
 }
 
 
@@ -44,4 +45,11 @@ select {
 
 .is-invalid {
   border-color: #dc3545; /* Set the border color for invalid fields */
+}
+
+@media screen and (max-width: 610px) {
+  .my-5{
+    margin-top: 24% !important;
+
+  }
 }

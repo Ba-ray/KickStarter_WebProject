@@ -168,10 +168,6 @@ const Services = () => {
           <h1 className="section-header highlited-word">Reviews</h1>
         </div>
         <UserReviewCarousel reviews={reviewsData} />
-        <div className="section-header-container">
-          <h1 className="section-header">Get In </h1>
-          <h1 className="section-header highlited-word">Touch</h1>
-        </div>
         <Contact />
       </div>
     </section>

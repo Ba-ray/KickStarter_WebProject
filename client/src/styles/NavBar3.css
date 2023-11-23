@@ -156,10 +156,14 @@
   width: 100%;
   top: 100%;
 }
+.active {
+  text-decoration: underline;
+  font-weight: 900;
+}
 
 /* Media query for responsiveness */
 
-@media (max-width: 800px) {
+@media (max-width: 980px) {
   .search-button,
   .search-bar,
   .join-now-button,

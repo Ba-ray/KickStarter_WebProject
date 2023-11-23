@@ -12,6 +12,7 @@ import {generateUsers,generateProjects} from "./Test"
 import axios from "axios";
 
 
+
 const Home = () => {
  
 
@@ -139,63 +140,63 @@ const Home = () => {
 
   return (
     <div className="homepage-container">
-        <nav className="navbar">
-            <NavBar3 />
-        </nav>
-        <section className="landing-page">
-            <section className="home">
-                <div className="home-text-section">
-                    <div className="home-title">
-                        <p className="home-header">Where Great Ideas Meet </p>
-                        <div className="changing-word">
-                            <p className="displayed">{displayedWord}</p>
-                            <p className={`cursor ${cursorVisible ? "visible" : ""}`}>|</p>
-                        </div>
-                    </div>
-                    <p className="welcome-paragraph">
-                        Welcome to our innovative platform where brilliant minds come
-                        together to transform ideas into reality. Join our global
-                        community of collaborators, explore exciting projects, and secure
-                        the investment capital needed to turn your dreams into success.
-                        Let's create a brighter future, together.
-                    </p>
-                </div>
-            </section>
-            <section className="user-section">
-                <h6 className="user-section-header"> what are you looking for? </h6>
-                <UserProjectNav onNavChange={handleNavChange} onSearch={handleSearch} />
-                <div className="search-list">
-                    {navDisplay === "users" &&
-                        users.map((user, index) => (
-                            <UserCard key={index} data={user} />
-                        ))}
+      <nav className="navbar">
+        <NavBar3 />
+      </nav>
+      <section className="landing-page">
+        <section className="home">
+          <div className="home-text-section">
+            <div className="home-title">
+              <p className="home-header">Where Great Ideas Meet </p>
+              <div className="changing-word">
+                <p className="displayed">{displayedWord}</p>
+                <p className={`cursor ${cursorVisible ? "visible" : ""}`}>|</p>
+              </div>
+            </div>
+            <p className="welcome-paragraph">
+              Welcome to our innovative platform where brilliant minds come
+              together to transform ideas into reality. Join our global
+              community of collaborators, explore exciting projects, and secure
+              the investment capital needed to turn your dreams into success.
+              Let's create a brighter future, together.
+            </p>
+          </div>
+        </section>
+        <section className="user-section">
+          <h6 className="user-section-header"> what are you looking for? </h6>
+          <UserProjectNav
+            onNavChange={handleNavChange}
+            onSearch={handleSearch}
+          />
+          <div className="search-list">
+            {navDisplay === "users" &&
+              users.map((user, index) => <UserCard key={index} data={user} />)}
 
-                    {navDisplay === "projects" &&
-                        projects.map((project, index) => (
-                            <ProjectPage key={index} data={project} />
-                        ))}
-                </div>
-                <div className="pagination-container">
-                    <Pagination>
-                        {Array.from({ length: totalPagesProjects }, (_, i) => (
-                            <Pagination.Item
-                                key={i + 1}
-                                active={i + 1 === currentPageProjects}
-                                onClick={() => handleProjectsPageChange(i + 1)}
-                            >
-                                {i + 1}
-                            </Pagination.Item>
-                        ))}
-                    </Pagination>
-                </div>
-            </section>
+            {navDisplay === "projects" &&
+              projects.map((project, index) => (
+                <ProjectPage key={index} data={project} />
+              ))}
+          </div>
+          <div className="pagination-container">
+            <Pagination>
+              {Array.from({ length: totalPagesProjects }, (_, i) => (
+                <Pagination.Item
+                  key={i + 1}
+                  active={i + 1 === currentPageProjects}
+                  onClick={() => handleProjectsPageChange(i + 1)}
+                >
+                  {i + 1}
+                </Pagination.Item>
+              ))}
+            </Pagination>
+          </div>
+        </section>
 
-            {/* <div className="section-header-container">
+        {/* <div className="section-header-container">
                 <h1 className="section-header">Get In </h1>
                 <h1 className="section-header highlited-word">Touch</h1> */}
-                <Contact />
-            
-        </section>
+        <Contact />
+      </section>
     </div>
   );
 };

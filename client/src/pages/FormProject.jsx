@@ -27,6 +27,7 @@ const FormProject = () => {
   const navigate = useNavigate();
   const [token,setToken] = useState(null);
 
+
   const projectCategories = [
     "Art",
     "Comics",
@@ -155,7 +156,7 @@ const FormProject = () => {
       <Container fluid className="my-5">
         <Col md={8} className="mx-auto">
           <h2 className="mb-4 text-center">Start your project</h2>
-
+       
           <FloatingLabel
             controlId="floatingInputGrid"
             label="Project Title"
@@ -169,7 +170,7 @@ const FormProject = () => {
               required
               isInvalid={validated && !projectData.projectTitle}
             />
-            <Form.Control.Feedback type="invalid" >
+            <Form.Control.Feedback type="invalid">
               Please enter a project title.
             </Form.Control.Feedback>
           </FloatingLabel>
@@ -243,7 +244,7 @@ const FormProject = () => {
               required
               isInvalid={validated && !projectData.projectDuration}
             />
-            <Form.Control.Feedback type="invalid" >
+            <Form.Control.Feedback type="invalid">
               Please enter a valid project duration.
             </Form.Control.Feedback>
           </FloatingLabel>
