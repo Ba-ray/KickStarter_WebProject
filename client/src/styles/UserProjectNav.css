@@ -82,6 +82,10 @@ a {
   .user-project-nav-links{
     display: block !important;
   }
+
+  .user-project-nav-links{
+    color: #fff !important;
+  }
   
 }
 

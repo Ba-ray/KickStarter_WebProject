@@ -35,6 +35,7 @@ const Slider = () => {
 
   return (
     <AnimatePresence mode="wait">
+      {/* the motion-framer  */}
       {/* it animates one component at a time */}
       {currentPage === "signin" && (
         <motion.div

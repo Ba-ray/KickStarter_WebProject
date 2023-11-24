@@ -34,7 +34,7 @@ const UserProjectNav = ({onNavChange , onSearch}) => {
           <div className="search-container">
             <FormControl
               type="search"
-              placeholder="Type Something"
+              placeholder="projects,users..."
               className="mr-2 search-bar-nav"
               aria-label="Search"
               value={searchKeyword}

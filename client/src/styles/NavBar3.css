@@ -6,7 +6,7 @@
 }
 .custom-navbar {
   position: fixed;
-  top: 2%;
+  top: 1vh;
   width: 100%;
   height: 60px;
   background: linear-gradient(to right, #80e3b7, #75ddef);

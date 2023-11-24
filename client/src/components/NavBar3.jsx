@@ -91,7 +91,7 @@ const NavBar3 = () => {
             >
               <FormControl
                 type="search"
-                placeholder="Type Something"
+                placeholder="projects,users,..."
                 className="mr-2 mt-2 mb-2 search-bar"
                 aria-label="Search"
                 value={searchKeyword}
@@ -163,7 +163,7 @@ const NavBar3 = () => {
             >
               <FormControl
                 type="search"
-                placeholder="Type Something"
+                placeholder="projects,users..."
                 className="mr-2 offcanva-search-bar"
                 aria-label="Search"
                 value={searchKeyword}
@@ -189,11 +189,7 @@ const NavBar3 = () => {
                   Profile
                 </NavLink>
 
-                <NavLink
-                  className="offcanvas-nav-link"
-                  onClick={handleLogout}
-
-                >
+                <NavLink className="offcanvas-nav-link" onClick={handleLogout}>
                   LogOut
                 </NavLink>
               </Nav>

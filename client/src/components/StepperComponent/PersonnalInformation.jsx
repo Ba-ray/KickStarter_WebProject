@@ -106,18 +106,20 @@
       }
     };
   
-    const onChange = (e) => {
-      const { name, value } = e.target;
-      const trimmedValue = value ? value.trim() : "";
-      const inputErrors = trimmedValue === "" ? "This field is required" : validateInput(name, trimmedValue) ? "" : inputs.find((input) => input.name === name).errorMessage;
-      setValues({ ...values, [name]: value });
-      setErrors({
-        ...errors,
-        [name]: inputErrors,
-      });
-      setFormData({ ...formData, [name]: value });
-    };
-  
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    const isValid = validateInput(name, value);
+
+    setValues({ ...values, [name]: value });
+    setErrors({
+      ...errors,
+      [name]: isValid
+        ? ""
+        : inputs.find((input) => input.name === name).errorMessage,
+    });
+    setFormData({ ...formData, [name]: value });
+  };
+
     const isFormValid = () => {
       return inputs.filter((input) => input.required).every((input) => values[input.name].trim() !== "" && errors[input.name] === "");
     };
