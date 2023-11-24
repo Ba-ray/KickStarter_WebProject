@@ -41,7 +41,7 @@ const SignIn = () => {
       navigate("/");
     } catch (error) {
       setErrorMessage(error.response?.data?.message || "An error occurred.");
-      alert(errorMessage);
+      alert(error.response.data.message);
       console.error("Error during login:", error);
     }
   };

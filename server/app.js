@@ -9,6 +9,7 @@ const authRoute = require('./routes/auth');
 const projectRoute = require('./routes/Projects')
 const uploadRoute = require('./routes/upload')
 const userRoute = require('./routes/Users')
+const fundRoute = require('./routes/Fund')
 
 //app
 
@@ -33,6 +34,7 @@ app.use("/api/auth", authRoute)
 app.use("/api/projects", projectRoute)
 app.use("/api/Upload", uploadRoute)
 app.use("/api/user" , userRoute)
+app.use("/api/Fund", fundRoute)
 
 //routes
 

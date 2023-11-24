@@ -63,6 +63,7 @@ router.post("/createproject", uploadMiddleware.single("projectImage"), async (re
             projectTitle,
             projectDescription,
             projectCategory: projectCategory.split(",").map(tag => tag.trim()),
+            current_fund:0,
             fundingGoal,
             projectEndDate: endDate,
             projectImage: req.file.filename,

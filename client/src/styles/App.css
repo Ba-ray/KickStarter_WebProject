@@ -6,7 +6,7 @@
 .gradient-button{
   padding: 1% 4%;
   margin-top: 2%;
-  border: none;
+  border: none !important;
   background: linear-gradient(45deg, #80e3b7, #75ddef);
   border-radius: 10px;
   box-shadow: 0px 0px 1% rgba(0, 0, 0, 0.2);

@@ -29,6 +29,7 @@ const Home = () => {
   const [totalPagesUsers, setTotalPagesUsers] = useState(1);
   const [totalPagesProjects, setTotalPagesProjects] = useState(1);
   const [searchKeyword, setSearchKeyword] = useState("");
+  const[fund,setFund] = useState(0);
 
   const handleNavChange = (selectedNav) => {
     setNavDisplay(selectedNav);
@@ -39,6 +40,7 @@ const Home = () => {
     fetchProjectData(currentPageProjects, searchValue); // Pass the updated search value
     fetchUserData(currentPageUsers, searchValue); // Pass the updated search value
   };
+
 
   useEffect(() => {
     const wordChangeInterval = setInterval(() => {
