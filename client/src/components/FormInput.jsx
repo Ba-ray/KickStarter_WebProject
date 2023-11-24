@@ -346,7 +346,6 @@ const FormInput = (props) => {
     return (
       <div className="password-input-wrapper">
         <Form.Control
-          type={inputProps.type === "password" && showPassword ? "text" : "password"}
           onChange={handleInputChange}
           onBlur={handleFocus}
           onFocus={() =>
@@ -354,6 +353,9 @@ const FormInput = (props) => {
           }
           className={`${props.isBig ? "inputDescription" : "otherInputs"}`}
           {...inputProps}
+          type={
+            inputProps.type === "password" && showPassword ? "text" : "password"
+          }
         />
         {(inputProps.name === "password" ||
           inputProps.name === "confirmPassword") && (
