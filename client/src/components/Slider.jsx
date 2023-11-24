@@ -35,6 +35,7 @@ const Slider = () => {
 
   return (
     <AnimatePresence mode="wait">
+      {/* it animates one component at a time */}
       {currentPage === "signin" && (
         <motion.div
           key="signin"
@@ -71,24 +72,7 @@ const Slider = () => {
           </div>
         </motion.div>
       )}
-      {/* {currentPage === "createProject" && (
-        <motion.div
-          key="register"
-          className="slide register-slide"
-          initial={{ opacity: 0, x: "-100%" }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: "100%" }}
-          transition={{ type: "spring", stiffness: 100 }}
-        >
-          <div className="SliderContainer">
-            <h1>One Of Us?</h1>
-            <p className="text">If you already have an account, just sign in</p>
-            <button className="swapButton" onClick={slideToSignIn}>
-              Sign In
-            </button>
-          </div>
-        </motion.div>
-      )} */}
+    
     </AnimatePresence>
   );
 };

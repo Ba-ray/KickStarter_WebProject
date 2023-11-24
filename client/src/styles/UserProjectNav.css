@@ -78,7 +78,7 @@ a {
   border-radius: 50px;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 850px) {
   .user-project-nav-links{
     display: block !important;
   }
